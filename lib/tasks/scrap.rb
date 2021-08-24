@@ -10,7 +10,6 @@ html_doc = Nokogiri::HTML(html_list)
 
 rivers_url = []
 rivers = {}
-topos = []
 
 u = 0
 html_doc.search('.liste_sites tr').each do |el|
@@ -40,8 +39,17 @@ e = 0
       name = data.search('td:nth-child(1)').xpath('text()').to_s.downcase
       length = data.search('td:nth-child(2)').xpath('text()').to_s
       level = data.search('td:nth-child(3)').xpath('text()').to_s
-      rivers[river_name].store(name.to_sym, [length, level]) if name != ""
+      if name != ""
+        rivers[river_name].store(name.to_sym, [length, level])
+        html_doc.search('#points_acces div').each do |point|
+          rivers[river_name][name.to_sym] << point.xpath('text()').to_s.strip
+        end
+        presentation = html_doc.search('.rubrique')[1]
+        logistique = html_doc.search('.rubrique')[-2]
+        ap logistique
+      end
     end
+    # ap rivers[river_name]
     # Get information about topos
     puts "#{rivers_url[i]} - Saved!".green
     i += 1
