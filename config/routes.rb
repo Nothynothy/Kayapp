@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'index#topos'
+  root to: 'topos#index'
   resources :topos, only: [:index, :show] do
     resources :comments, only: [:create, :update]
     resources :favorites, only: [:create]
