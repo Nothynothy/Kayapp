@@ -10,10 +10,73 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_23_131728) do
+ActiveRecord::Schema.define(version: 2021_08_24_113017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "name"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "category"
+    t.boolean "active"
+    t.string "alert_type"
+    t.string "description"
+    t.string "severity"
+    t.bigint "user_id"
+    t.bigint "topo_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["topo_id"], name: "index_comments_on_topo_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "topo_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["topo_id"], name: "index_favorites_on_topo_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "rivers", force: :cascade do |t|
+    t.string "name"
+    t.string "country"
+    t.string "region"
+    t.string "department"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "topo_details", force: :cascade do |t|
+    t.string "category"
+    t.string "content"
+    t.bigint "topo_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["topo_id"], name: "index_topo_details_on_topo_id"
+  end
+
+  create_table "topos", force: :cascade do |t|
+    t.string "name"
+    t.integer "level"
+    t.integer "length"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "river_id"
+    t.bigint "departure_id"
+    t.bigint "arrival_id"
+    t.index ["arrival_id"], name: "index_topos_on_arrival_id"
+    t.index ["departure_id"], name: "index_topos_on_departure_id"
+    t.index ["river_id"], name: "index_topos_on_river_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,8 +86,18 @@ ActiveRecord::Schema.define(version: 2021_08_23_131728) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "user_name"
+    t.integer "level"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "topos"
+  add_foreign_key "comments", "users"
+  add_foreign_key "favorites", "topos"
+  add_foreign_key "favorites", "users"
+  add_foreign_key "topo_details", "topos"
+  add_foreign_key "topos", "addresses", column: "arrival_id"
+  add_foreign_key "topos", "addresses", column: "departure_id"
+  add_foreign_key "topos", "rivers"
 end
