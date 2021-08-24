@@ -1,0 +1,2 @@
+class TopoDetail < ApplicationRecord
+end

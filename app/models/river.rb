@@ -1,0 +1,2 @@
+class River < ApplicationRecord
+end
