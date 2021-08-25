@@ -1,19 +1,86 @@
-.card-topo {
-  display: block;
-  border-color: black;
-  background-color: grey;
+.card-product {
+  overflow: hidden;
+  height: 110px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  border-radius: 10px;
+  border-color: $blue;
+  border: solid;
+  border-width: 1px;
+  // align-items: center;
 }
 
-.gap-10 {
-  gap: 10px;
+.card-product img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
 }
+
+
+.card-infos {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  // flex-direction: column;
+}
+
+.infos-name {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    padding-top: 5px;
+}
+
+.naming-div {
+  display: flex;
+  // justify-content: space-between;
+}
+
+.country-div {
+  display: flex;
+  gap: 5px;
+
+}
+
+.alert-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.alert-icons {
+  display: flex;
+  align-items: center;
+}
+
+
+// .card-topo {
+//   display: block;
+//   border-color: black;
+//   background-color: grey;
+// }
+
+.toto {
+  font-size: 32px;
+}
+
+// .gap-10 {
+//   gap: 10px;
+// }
 
 .unsafe {
-  font-size: 50px;
-  color: red;
+  font-size: 52px;
+  color: $red;
 }
 
 .safe {
-  font-size: 50px;
-  color:green;
+  font-size: 52px;
+  color: $green;
+}
+
+.topo-level {
+  text-align: right;
+  padding-right: 5px;
+  padding-top: 5px;
 }
