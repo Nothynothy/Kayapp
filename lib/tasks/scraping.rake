@@ -69,9 +69,7 @@ def save_db(rivers) # rubocop:disable Metrics/MethodLength
       length = info[0].gsub(",", ".")
       topo = Topo.new(name: parcour, length: length)
       departure = Address.create!(name: info[2])
-      ap departure
       arrival = Address.create!(name: info[3])
-      ap arrival
       topo.river = river
       topo.departure = departure
       topo.arrival = arrival
@@ -84,7 +82,6 @@ def save_db(rivers) # rubocop:disable Metrics/MethodLength
           topo_level = Level.new(difficulty: int)
           topo_level.topo = topo
           topo_level.save!
-          ap topo_level
         else
           topo_level = Level.new(difficulty: level.to_i)
           topo_level.topo = topo
