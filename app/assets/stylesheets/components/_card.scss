@@ -1,5 +1,7 @@
 .card-topo {
   display: block;
+  border-color: black;
+  background-color: grey;
 }
 
 .gap-10 {
@@ -7,6 +9,11 @@
 }
 
 .unsafe {
-  font-size: 25px;
+  font-size: 50px;
   color: red;
+}
+
+.safe {
+  font-size: 50px;
+  color:green;
 }
