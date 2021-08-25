@@ -1,2 +1,47 @@
-<h1>Topos#show</h1>
-<p>Find me in app/views/topos/show.html.erb</p>
+<div class="topo-header">
+  <h3>Albarine P4      <\3 </h3>
+  <%# topo-header
+  topo.river.name, topo.name, fav_symbol %>
+</div>
+
+<br>
+
+<div class="container topo">
+  <div class="alert-banner">
+    <h4> ATT Alertes (2) </h4>
+    <%# (warning-symbol) Alert(s) (nombre) "%>
+    <%# => COUNT * INTO comments
+    WHERE topo_id = @topo, category = "alert", active = true %>
+  </div>
+
+  <br>
+
+  <div class="water-graph">
+    <h4>Graph -</h4>
+    <h4>Niveaux d'eau</h4>
+    <h4>+ water température</h4>
+  </div>
+
+  <br>
+
+  <div class="key-info"> <%# Tableau à deux colonnes %>
+    <h4>Difficulté </h4><%#@topo.level %>
+    <h4>Longueur </h4> <%#@topo.length %>
+    <h4>Départ </h4> <%#@topo.departure.name %>
+    <h4>Arrivée </h4> <%#@topo.arrival.name %>
+  </div>
+
+  <br>
+
+  <div class="details"></div>
+    <%# @topo_details.each |topo_detail| do      => @topo_details = tout les détails d'un topo %>
+    <h5>Presentation </h5> <%# topo_detail.category %>
+    <h6>blablabla </h6> <%# topo_detail.content %>
+    <h5>Au fil de l'eau </h5> <%# topo_detail.category %>
+    <h6>blablabla blablablablablablablablablablablablablablablablablablablablabla
+    blablablablablablablablablablablablablablablablablablablablabla
+    </h6> <%# topo_detail.content %>
+    <%# end %>
+  </div>
+
+</div>
