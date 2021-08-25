@@ -1,1 +1,43 @@
-<h1>Hello Charly</h1>
+
+<div class='container'>
+
+  <%# SEARCH-BAR %>
+  <div>
+    <%= simple_form_for :search, url: root_path, method: :get do |f| %>
+      <div class="search-form-control form-group">
+        <input class="form-control string required" type="text" name="search[query]" id="search_query" />
+        <button name="button" type="submit" class="btn btn-flat">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    <% end %>
+  </div>
+
+  <%# LIST TOPOS %>
+  <div class="card-container">
+    <% @topos.each do |topo| %>
+      <%= link_to topo_path(topo), class: 'card-product' do %>
+        <%= image_tag "https://images.unsplash.com/photo-1437482078695-73f5ca6c96e2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" %>
+        <div class='card-infos'>
+          <div class='infos-name'>
+            <div class='naming-div'>
+            <h4><strong><%= "#{topo.river.name} #{topo.name}" %></strong></h4>
+            </div>
+            <div class='country-div'>
+              <p><svg xmlns="http://www.w3.org/2000/svg" width="27" height="18"><rect width="27" height="18" fill="#ED2939"/><rect width="18" height="18" fill="#fff"/><rect width="9" height="18" fill="#002395"/></svg></p>
+              <p><%= topo.river.department %></p>
+            </div>
+          </div>
+          <div class="alert-div">
+            <div class='topo-level'><h4><strong><%= topo.level %></strong></h4></div>
+            <div class="alert-icons">
+              <div class="toto">⚠</div>
+              <div class="<%= topo.river.safe? ? 'safe' : 'unsafe' %>">●</div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+</div>

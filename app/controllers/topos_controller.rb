@@ -1,9 +1,12 @@
 class ToposController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
-  def index
+  def show
+
   end
 
-  def show
+  def index
+    @topos = Topo.all
   end
+
 end

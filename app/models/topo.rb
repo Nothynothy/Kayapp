@@ -5,4 +5,8 @@ class Topo < ApplicationRecord
   has_many :favorites
   has_many :comments
   has_many :levels
+
+  def alert?
+    [true, false].sample
+  end
 end
