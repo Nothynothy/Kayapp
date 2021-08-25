@@ -3,4 +3,8 @@ class Topo < ApplicationRecord
   has_many :favorites
   has_many :comments
   has_many :topo_details
+
+  def alert?
+    [true, false].sample
+  end
 end

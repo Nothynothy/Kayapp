@@ -2,6 +2,12 @@
   background: $blue;
   display: flex;
   justify-content: space-around;
+  height: 60px;
+}
+
+.navbar-lewagon .navbar-collapse {
+  flex-grow: 0;
+}
 
   .navbar-collapse {
       flex-grow: 0;
