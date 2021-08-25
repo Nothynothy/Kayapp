@@ -4,4 +4,8 @@ class River < ApplicationRecord
   def safe?
     [true, false].sample
   end
+
+  def alert?
+    [true, false].sample
+  end
 end
