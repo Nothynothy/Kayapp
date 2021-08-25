@@ -3,6 +3,18 @@ require 'nokogiri'
 require 'colorize'
 require 'awesome_print'
 
+print 'Destroy all '
+print 'Level'.green
+print ', '
+print 'Topo'.red
+print ' and '
+print 'River'.blue
+puts ' ...'
+
+Level.destroy_all
+Topo.destroy_all
+River.destroy_all
+
 def rivers_info(html_doc, rivers_url, rivers) # rubocop:disable Metrics/MethodLength
   html_doc.search('.liste_sites tr').each do |el|
     el.css('.nom_site a').each do |link|
@@ -37,11 +49,48 @@ def topos_info(url, rivers) # rubocop:disable Metrics/MethodLength
   puts "Found data - #{river_name}".green
 end
 
-def save_db(rivers)
-  rivers.each do |k, v|
+
+def save_db(rivers) # rubocop:disable Metrics/MethodLength
+  roman_to_int = {  I: 1,
+                    II: 2,
+                    III: 3,
+                    IV: 4,
+                    V: 5,
+                    VI: 6 }
+  rivers.each do |k, v| # rubocop:disable Metrics/BlockLength
+    rivers_addres = v[:addres]
+    department = rivers_addres[2] if rivers_addres[2] != nil
+    river = River.create!(name: k,
+                          country: rivers_addres[0],
+                          region: rivers_addres[1],
+                          department: department)
     topos = v[:topos]
     topos.each do |parcour, info|
-      topo = Topo.new(name: parcour, length: info[0])
+      length = info[0].gsub(",", ".")
+      topo = Topo.new(name: parcour, length: length)
+      departure = Address.create!(name: info[2])
+      ap departure
+      arrival = Address.create!(name: info[3])
+      ap arrival
+      topo.river = river
+      topo.departure = departure
+      topo.arrival = arrival
+      topo.save!
+      levels = info[1][/^(\w*)-(\w*)|^(\w*) (\w*)|^(\w*)/].strip.split(/[-\s]/)
+      levels.each do |level|
+        if level.to_i.zero?
+          int = roman_to_int[level.to_sym]
+          int = int.nil? ? next : int
+          topo_level = Level.new(difficulty: int)
+          topo_level.topo = topo
+          topo_level.save!
+          ap topo_level
+        else
+          topo_level = Level.new(difficulty: level.to_i)
+          topo_level.topo = topo
+          topo_level.save!
+        end
+      end
     end
   end
 end
