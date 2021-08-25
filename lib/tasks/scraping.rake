@@ -40,8 +40,8 @@ end
 def save_db(rivers)
   rivers.each do |k, v|
     topos = v[:topos]
-    topos.each do |par, inf|
-      topo = Topo.new(name: par, level: inf[1], length: inf[0])
+    topos.each do |parcour, info|
+      topo = Topo.new(name: parcour, length: info[0])
     end
   end
 end
