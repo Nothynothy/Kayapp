@@ -60,6 +60,7 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     autoprefixer-rails (10.2.5.0)
       execjs (< 2.8.0)
+    awesome_print (1.9.2)
     bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.7.7)
@@ -115,6 +116,8 @@ GEM
     msgpack (1.4.2)
     nio4r (2.5.8)
     nokogiri (1.12.3-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.12.3-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.12.3-x86_64-linux)
       racc (~> 1.4)
@@ -232,10 +235,12 @@ GEM
 
 PLATFORMS
   arm64-darwin-20
+  x86_64-darwin-20
   x86_64-linux
 
 DEPENDENCIES
   autoprefixer-rails (= 10.2.5)
+  awesome_print (~> 1.8)
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)

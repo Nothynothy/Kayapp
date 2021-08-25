@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_24_113017) do
+ActiveRecord::Schema.define(version: 2021_08_25_120908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,14 @@ ActiveRecord::Schema.define(version: 2021_08_24_113017) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "levels", force: :cascade do |t|
+    t.integer "difficulty"
+    t.bigint "topo_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["topo_id"], name: "index_levels_on_topo_id"
+  end
+
   create_table "rivers", force: :cascade do |t|
     t.string "name"
     t.string "country"
@@ -53,15 +61,6 @@ ActiveRecord::Schema.define(version: 2021_08_24_113017) do
     t.string "department"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "topo_details", force: :cascade do |t|
-    t.string "category"
-    t.string "content"
-    t.bigint "topo_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["topo_id"], name: "index_topo_details_on_topo_id"
   end
 
   create_table "topos", force: :cascade do |t|
@@ -96,7 +95,7 @@ ActiveRecord::Schema.define(version: 2021_08_24_113017) do
   add_foreign_key "comments", "users"
   add_foreign_key "favorites", "topos"
   add_foreign_key "favorites", "users"
-  add_foreign_key "topo_details", "topos"
+  add_foreign_key "levels", "topos"
   add_foreign_key "topos", "addresses", column: "arrival_id"
   add_foreign_key "topos", "addresses", column: "departure_id"
   add_foreign_key "topos", "rivers"
