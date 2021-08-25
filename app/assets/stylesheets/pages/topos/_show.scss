@@ -1,0 +1,87 @@
+#topo-header{
+  justify-content: space-between;
+  color: $white;
+  font-size: 36px;
+}
+
+.topo{
+  margin-top: 80px;
+}
+
+#alert-banner {
+  height: 50px;
+
+  border-style: solid;
+  border-color: $red;
+  border-radius: 30px;
+  border-width: 1px;
+
+  margin: 10px auto;
+  padding-left: 20px;
+  font-size: 24px;
+
+  display: flex;
+  place-items: center;
+}
+
+#water-graph {
+  height: 230px;
+
+  border-style: solid;
+  border-color: $black;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 30px;
+  border-width: 1px;
+
+  margin: 10px auto;
+  padding-left: 20px;
+  display: flex;
+  place-items: center;
+
+  position: relative;
+}
+#water-temp{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+
+  height: 50px;
+  width: 50px;
+
+  border-style: solid;
+  border-radius: 50%;
+  border-color: black;
+  border-width: 1px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  h3{
+    font-size : 18px;
+    margin: 0px;
+  }
+}
+
+#key-info{
+  height: 110px;
+
+  border-style: solid;
+  border-color: $blue;
+  border-radius: 10px;
+  border-width: 1px;
+
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  place-items: center;
+
+  size: 18px;
+}
+
+#category-row{
+  color: $blue;
+  text-align: right;
+}
+#content-row{
+  margin-right: 15px;
+}

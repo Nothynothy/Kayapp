@@ -19,12 +19,13 @@ nathan = User.create!(email: "toto@gmail.com", password: "123456", user_name: "N
 
 address1 = Address.create!(name: "Pont du hameau des Cayres", latitude: 34.76876, longitude: 65.657657)
 address2 = Address.create!(name: "Pont du wagon", latitude: 3.76876, longitude: 5.657657)
+address3 = Address.create!(name: "Place bellecour", latitude: 56.76, longitude: 5.657)
 
 river1 = River.create!(name:'Besorgues', country: 'France', region: "Auvergne-Rhônes-Alpes", department: 'Ardèche(07)')
 
 topo1 = Topo.create!(name: 'P1', level: 5, length: 3, river_id: river1.id, departure_id: address1.id, arrival_id: address2.id)
-topo2 = Topo.create!(name: 'P2', level: 3, length: 6, river_id: river1.id, departure_id: address2.id, arrival_id: address1.id)
-topo3 = Topo.create!(name: 'P3', level: 2, length: 4, river_id: river1.id, departure_id: address2.id, arrival_id: address2.id)
+topo2 = Topo.create!(name: 'P2', level: 3, length: 6, river_id: river1.id, departure_id: address2.id, arrival_id: address3.id)
+topo3 = Topo.create!(name: 'P3', level: 2, length: 4, river_id: river1.id, departure_id: address3.id, arrival_id: address1.id)
 
 topo_detail1 = TopoDetail.create!(topo_id: topo1.id, category:'Présentation', content: "Rivière magnifique avec de jolis passages")
 topo_detail2 = TopoDetail.create!(topo_id: topo2.id, category:'Logistique', content: "Embarquement : pont du hameau des Cayres, Débarquement : confluent de la Volane (RG)")

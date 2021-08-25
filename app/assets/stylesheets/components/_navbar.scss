@@ -2,12 +2,11 @@
   background: $blue;
   display: flex;
   justify-content: space-around;
-}
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-.navbar-lewagon .navbar-brand img {
+  .navbar-collapse {
+      flex-grow: 0;
+  }
+  .navbar-brand img {
   width: 40px;
+  }
 }

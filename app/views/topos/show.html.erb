@@ -1,47 +1,49 @@
-<div class="topo-header">
-  <h3>Albarine P4      <\3 </h3>
-  <%# topo-header
-  topo.river.name, topo.name, fav_symbol %>
+<div class="navbar fixed-top navbar-expand-sm navbar-light navbar-lewagon" id="topo-header">
+  <div class="topo-name"> <%# FYI Class not used %>
+    <%= "#{@topo.river.name} - #{@topo.name}"  %>
+  </div>
+  <div class="favorite-icon active"> <%# FYI Class not used %>
+    <%= image_tag "navbar/favorites.svg" %> <%# TODO : ajouter JS => si click, alors toggle.active + impact DB "%>
+  </div>
 </div>
 
-<br>
-
 <div class="container topo">
-  <div class="alert-banner">
-    <h4> ATT Alertes (2) </h4>
-    <%# (warning-symbol) Alert(s) (nombre) "%>
-    <%# => COUNT * INTO comments
-    WHERE topo_id = @topo, category = "alert", active = true %>
+  <div id="alert-banner">
+    <%= "⚠️  #{"Alerte".pluralize(@alerts_count)} (#{@alerts_count})"%> <%# TODO: warning à rendre dynamique %>
   </div>
-
-  <br>
-
-  <div class="water-graph">
-    <h4>Graph -</h4>
-    <h4>Niveaux d'eau</h4>
-    <h4>+ water température</h4>
+  <div id="water-graph">
+    <div id="water-temp">
+    <h3>20°</h3></div>
+    TO DO : Graphique - Niveaux d'eau
   </div>
-
-  <br>
-
-  <div class="key-info"> <%# Tableau à deux colonnes %>
-    <h4>Difficulté </h4><%#@topo.level %>
-    <h4>Longueur </h4> <%#@topo.length %>
-    <h4>Départ </h4> <%#@topo.departure.name %>
-    <h4>Arrivée </h4> <%#@topo.arrival.name %>
+  <div id="key-info">
+    <div class="row-3" id="category-row">
+      <div class="col-sm">
+        Difficulté
+      </div>
+      <div class="col-sm">
+        Longueur
+      </div>
+      <div class="col-sm">
+        Départ
+      </div>
+      <div class="col-sm">
+        Arrivée
+      </div>
+    </div>
+    <div class="row-6" id="content-row">
+      <div class="col-sm">
+        <%= @topo.level %> <%# TODO: insert string LEVEL scrappé %>
+      </div>
+      <div class="col-sm">
+        <%= "#{@topo.length} km" %>
+      </div>
+      <div class="col-sm">
+        <%= @departure.name %>
+      </div>
+      <div class="col-sm">
+        <%= @arrival.name %>
+      </div>
+    </div>
   </div>
-
-  <br>
-
-  <div class="details"></div>
-    <%# @topo_details.each |topo_detail| do      => @topo_details = tout les détails d'un topo %>
-    <h5>Presentation </h5> <%# topo_detail.category %>
-    <h6>blablabla </h6> <%# topo_detail.content %>
-    <h5>Au fil de l'eau </h5> <%# topo_detail.category %>
-    <h6>blablabla blablablablablablablablablablablablablablablablablablablablabla
-    blablablablablablablablablablablablablablablablablablablablabla
-    </h6> <%# topo_detail.content %>
-    <%# end %>
-  </div>
-
 </div>
