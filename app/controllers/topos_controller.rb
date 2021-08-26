@@ -1,6 +1,10 @@
 class ToposController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
+  def index
+    @topos = Topo.all
+  end
+
   def show
     @topo = Topo.find(params[:id])
     @departure = Address.find(@topo.departure_id)
@@ -9,7 +13,4 @@ class ToposController < ApplicationController
     @alerts_count = comments.where(category: "alert", active: true).count
   end
 
-  def index
-    @topos = Topo.all
-  end
 end
