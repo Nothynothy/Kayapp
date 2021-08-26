@@ -11,9 +11,9 @@ print ' and '
 print 'River'.blue
 puts ' ...'
 
-Level.destroy_all
-Topo.destroy_all
-River.destroy_all
+# Level.destroy_all
+# Topo.destroy_all
+# River.destroy_all
 
 def rivers_info(html_doc, rivers_url, rivers) # rubocop:disable Metrics/MethodLength
   html_doc.search('.liste_sites tr').each do |el|
