@@ -1,19 +1,16 @@
-require 'open-uri'
-require 'nokogiri'
-require 'colorize'
-require 'awesome_print'
+def start
+  print 'Destroy all '
+  print 'Level'.green
+  print ', '
+  print 'Topo'.red
+  print ' and '
+  print 'River'.blue
+  puts ' ...'
 
-print 'Destroy all '
-print 'Level'.green
-print ', '
-print 'Topo'.red
-print ' and '
-print 'River'.blue
-puts ' ...'
-
-Level.destroy_all
-Topo.destroy_all
-River.destroy_all
+  Level.destroy_all
+  Topo.destroy_all
+  River.destroy_all
+end
 
 def rivers_info(html_doc, rivers_url, rivers) # rubocop:disable Metrics/MethodLength
   html_doc.search('.liste_sites tr').each do |el|
@@ -93,6 +90,7 @@ def save_db(rivers) # rubocop:disable Metrics/MethodLength
 end
 
 def scrap(num) # rubocop:disable Metrics/MethodLength
+  start
   rivers_url = []
   rivers = {}
   list_url = 'https://dev.eauxvives.org/fr/rivieres/liste'
