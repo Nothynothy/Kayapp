@@ -6,7 +6,11 @@ class Topo < ApplicationRecord
   has_many :comments
   has_many :levels
 
-  def alert?
-    [true, false].sample
+  def has_severity_2_alert?
+    comments.where(category: "alert", severity: 2, active: true).any?
+  end
+
+  def has_alert?
+    comments.where(category: "alert").any?
   end
 end

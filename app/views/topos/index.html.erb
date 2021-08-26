@@ -31,7 +31,10 @@
           <div class="alert-div">
             <div class='topo-level'><h4><strong><%= topo.levels %></strong></h4></div>
             <div class="alert-icons">
-              <div class="toto">⚠</div>
+
+            <% if topo.has_alert? %>
+              <div class="alert-level <%= topo.has_severity_2_alert? ? 'severity2' : '' %>">⚠</div>
+            <% end %>
               <div class="<%= topo.river.safe? ? 'safe' : 'unsafe' %>">●</div>
             </div>
           </div>
