@@ -1,2 +1,49 @@
-<h1>Topos#show</h1>
-<p>Find me in app/views/topos/show.html.erb</p>
+<div class="navbar fixed-top navbar-expand-sm navbar-light navbar-lewagon" id="topo-header">
+  <div class="topo-name"> <%# FYI Class not used %>
+    <%= "#{@topo.river.name} - #{@topo.name}"  %>
+  </div>
+  <div class="favorite-icon active"> <%# FYI Class not used %>
+    <%= image_tag "navbar/favorites.svg" %> <%# TODO : ajouter JS => si click, alors toggle.active + impact DB "%>
+  </div>
+</div>
+
+<div class="container topo">
+  <div id="alert-banner">
+    <%= "⚠️  #{"Alerte".pluralize(@alerts_count)} (#{@alerts_count})"%> <%# TODO: warning à rendre dynamique %>
+  </div>
+  <div id="water-graph">
+    <div id="water-temp">
+    <h3>20°</h3></div>
+    TO DO : Graphique - Niveaux d'eau
+  </div>
+  <div id="key-info">
+    <div class="row-3" id="category-row">
+      <div class="col-sm">
+        Difficulté
+      </div>
+      <div class="col-sm">
+        Longueur
+      </div>
+      <div class="col-sm">
+        Départ
+      </div>
+      <div class="col-sm">
+        Arrivée
+      </div>
+    </div>
+    <div class="row-6" id="content-row">
+      <div class="col-sm">
+        <%= @topo.level %> <%# TODO: insert string LEVEL scrappé %>
+      </div>
+      <div class="col-sm">
+        <%= "#{@topo.length} km" %>
+      </div>
+      <div class="col-sm">
+        <%= @departure.name %>
+      </div>
+      <div class="col-sm">
+        <%= @arrival.name %>
+      </div>
+    </div>
+  </div>
+</div>
