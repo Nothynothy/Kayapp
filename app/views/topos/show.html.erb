@@ -1,3 +1,5 @@
+<script src="../../javascript/plugins/graph"></script>
+
 <div class="navbar fixed-top navbar-expand-sm navbar-light navbar-lewagon" id="topo-header">
   <div class="topo-name"> <%# FYI Class not used %>
     <%= "#{@topo.river.name} - #{@topo.name}"  %>
@@ -13,10 +15,13 @@
   </div>
 
   <div id="water-info">
-    <div id="water-graph">
-      <h3>MY chart here</h3>
-      <canvas id="myChart"></canvas>
-    </div>
+      <%= line_chart @data,
+          id:"water-graph",
+          width: "100%", height: "100%",
+          ytitle: "Vol. d'eau (m3)", xtitle: "Heure",
+          legend: true, label: "station 1",
+          loading: "Chargement des niveaux d'eau en cours, d'eau... 🚣‍♀️ 🎣 🦦",
+          empty: "Aucune donnée des niveaux d'eau disponible 😭"%>
     <div id="water-temp">
       <h3>20°</h3>
     </div>
