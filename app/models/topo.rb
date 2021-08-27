@@ -6,6 +6,16 @@ class Topo < ApplicationRecord
   has_many :comments
   has_many :levels
 
+  include PgSearch::Model
+  pg_search_scope :search_by_topo_and_river,
+    against: [ :name ],
+    associated_against: {
+      river: [ :name, :country, :region, :department ]
+    },
+    using: {
+      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+  }
+
   def has_severity_2_alert?
     comments.where(category: "alert", severity: 2, active: true).any?
   end
