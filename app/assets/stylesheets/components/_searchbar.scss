@@ -1,3 +1,7 @@
+.search {
+  position: relative;
+}
+
 .search-form-control {
   position: relative;
   padding-top: 15px;
@@ -22,4 +26,10 @@
   border: 1px solid $yellow;
   outline: none !important;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+#search-message {
+  position: absolute;
+  top: 300px;
+  text-align: center;
 }

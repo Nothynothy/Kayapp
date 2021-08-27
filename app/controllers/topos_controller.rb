@@ -2,7 +2,11 @@ class ToposController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @topos = Topo.all
+    if params[:query].present?
+      @topos = Topo.search_by_topo_and_river(params[:query])
+    else
+      @topos = Topo.all
+    end
   end
 
   def show
@@ -11,7 +15,6 @@ class ToposController < ApplicationController
     @arrival = Address.find(@topo.arrival_id)
     comments = Comment.where(topo_id: @topo.id)
     @alerts_count = comments.where(category: "alert", active: true).count
-
     @data = water_data
     # @data = [{name: "Station A", data: date, labels: releve, color: "black"}]
 
@@ -51,9 +54,19 @@ class ToposController < ApplicationController
       "12": 8,
     }
     return [
-      {name: "Station A", data: series_a, color: "black"},
-      {name: "Station B", data: series_b, color: "orange"}
+      {name: "Station A", data: series_a, color: "orange"},
+      {name: "Station B", data: series_b, color: "black"}
     ]
+  end
+
+  def rom_to_int(rom)
+    roman_to_int = {  'I' => 1,
+                      'II' => 2,
+                      'III' => 3,
+                      'IV' => 4,
+                      'V' => 5,
+                      'VI' => 6 }
+    roman_to_int[rom]
   end
 
 end
