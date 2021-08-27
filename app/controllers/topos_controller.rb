@@ -14,7 +14,7 @@ class ToposController < ApplicationController
 
     @data = water_data
   end
-
+  
   private
 
   def water_data

@@ -10,8 +10,16 @@
 }
 
 .navbar-collapse {
-    flex-grow: 0;
+  flex-grow: 0;
 }
 .navbar-brand img {
-width: 40px;
+  width: 40px;
+}
+
+.nav-link {
+  color: white;
+}
+
+.disable {
+  display: none;
 }

@@ -2,12 +2,15 @@
   overflow: hidden;
   height: 110px;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
-  border-radius: 10px;
+  border-radius: 8px;
   border-color: $blue;
   border: solid;
   border-width: 1px;
+  text-decoration: none;
+  &:active {
+    text-decoration: none;
+  }
 }
 
 .card-product img {
@@ -18,66 +21,74 @@
 
 
 .card-infos {
-  display: flex;
   width: 100%;
-  justify-content: space-around;
-  // flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
 }
 
 .infos-name {
     display: flex;
     flex-direction: column;
-    width: 60%;
-    padding-top: 5px;
 }
 
 .naming-div {
   display: flex;
+  justify-content: space-between;
+  color: black;
+  margin-bottom: 5px;
+  h4 {
+    margin-bottom: 0px;
+  }
 }
 
 .country-div {
   display: flex;
+  align-items: center;
   gap: 5px;
-
+  color: rgba(0,0,0,0.4);
+  p {
+    font-size: 14px;
+    margin: 0;
+  }
 }
 
 .alert-div {
+  margin-top: 10px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .alert-icons {
   display: flex;
-  align-items: center;
 }
 
 
 .alert-level {
-  font-size: 32px;
+  font-size: 16px;
   color: $yellow;
-  font-weight: bolder;
+  margin-right: 10px;
 }
 
 .severity2 {
-  font-size: 32px;
   color: $red;
   font-weight: bolder;
 }
 
+.circle {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
 
 .unsafe {
-  font-size: 52px;
-  color: $red;
+  background: $red;
 }
 
 .safe {
-  font-size: 52px;
-  color: $green;
+  background-color: $green;
 }
 
 .topo-level {
-  text-align: right;
-  padding-right: 5px;
-  padding-top: 5px;
+  color: black;
+  font-size: 18px;
 }
