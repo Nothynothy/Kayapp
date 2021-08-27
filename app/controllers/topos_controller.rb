@@ -2,7 +2,11 @@ class ToposController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @topos = Topo.all
+    if params[:query].present?
+      @topos = Topo.search_by_topo_and_river(params[:query])
+    else
+      @topos = Topo.all
+    end
   end
 
   def show
@@ -14,7 +18,7 @@ class ToposController < ApplicationController
 
     @data = water_data
   end
-  
+
   private
 
   def water_data
