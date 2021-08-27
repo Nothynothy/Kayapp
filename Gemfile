@@ -64,3 +64,4 @@ gem 'nokogiri', '~> 1.12', '>= 1.12.3'
 gem 'colorize', '~> 0.8.1'
 gem 'awesome_print', '~> 1.8'
 gem 'geocoder'
+gem "chartkick"

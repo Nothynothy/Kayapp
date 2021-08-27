@@ -21,21 +21,20 @@
         <div class='card-infos'>
           <div class='infos-name'>
             <div class='naming-div'>
-            <h4><strong><%= "#{topo.river.name} #{topo.name}" %></strong></h4>
-            </div>
-            <div class='country-div'>
-              <p><svg xmlns="http://www.w3.org/2000/svg" width="27" height="18"><rect width="27" height="18" fill="#ED2939"/><rect width="18" height="18" fill="#fff"/><rect width="9" height="18" fill="#002395"/></svg></p>
-              <p><%= topo.river.department %></p>
+              <h4><%= "#{topo.river.name.capitalize} #{topo.name.capitalize}" %></h4>
+              <h4 class='topo-level'><%= topo.find_level.count > 1 ? "#{topo.find_level[0]} - #{topo.find_level[1]}" : "#{topo.find_level[0]}" %></h4>
             </div>
           </div>
+          <div class='country-div'>
+            <i><svg xmlns="http://www.w3.org/2000/svg" width="27" height="18"><rect width="27" height="18" fill="#ED2939"/><rect width="18" height="18" fill="#fff"/><rect width="9" height="18" fill="#002395"/></svg></i>
+            <p><%= topo.river.department %></p>
+          </div>
           <div class="alert-div">
-            <div class='topo-level'><h4><strong><%= topo.levels %></strong></h4></div>
             <div class="alert-icons">
-
-            <% if topo.has_alert? %>
-              <div class="alert-level <%= topo.has_severity_2_alert? ? 'severity2' : '' %>">⚠</div>
-            <% end %>
-              <div class="<%= topo.river.safe? ? 'safe' : 'unsafe' %>">●</div>
+              <% if topo.has_alert? %>
+                <div class="alert-level <%= topo.has_severity_2_alert? ? 'severity2' : '' %>"><i class="fas fa-exclamation-triangle"></i></div>
+              <% end %>
+              <div class="circle <%= topo.river.safe? ? 'safe' : 'unsafe' %>"></div>
             </div>
           </div>
         </div>
