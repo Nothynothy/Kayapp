@@ -12,36 +12,49 @@ class ToposController < ApplicationController
     comments = Comment.where(topo_id: @topo.id)
     @alerts_count = comments.where(category: "alert", active: true).count
 
-    @data = water_data
-  end
-  
-  private
+    @topo_sites_name = ApiHubeauSiteName.call(@topo.river.name)
+    @topo_sites_code = ApiHubeauCodeSite.call(@topo.river.name)
 
-  def water_data
-    series_a = {
-      "8": 30,
-      "10": 100,
-      "12": 80,
-      "14": 50,
-      "15": 20,
-      "17": 110,
-      "18": 80,
-      "23": 82,
-    }
-    series_b = {
-      "8": 100,
-      "10": 10,
-      "12": 8,
-      "14": 5,
-      "15": 2,
-      "17": 10,
-      "18": 50,
-      "23": 51,
-    }
-    return [
-      {name: "Station A", data: series_a, color: "black"},
-      {name: "Station B", data: series_b, color: "orange"}
-    ]
+    topo_sites_levels = []
+    @topo_sites_code.each do |value|
+      data = ApiHubeauDataSite.call(value)
+      topo_sites_levels << data
+    end
+
+    @topo_sites_levels = topo_sites_levels.flatten
   end
+    # @levels =
+        # codes = ApiHubeauRiverName.call('Albarine')
+    # codes.each do code
+    #  levels = ApiHubeauCodeSite.call(code)
+      #  levels.each
+    # end
+
+  #   @graphs = [
+  #   {
+  #     "8": 30,
+  #     "10": 100,
+  #     "12": 80,
+  #     "14": 50,
+  #     "15": 20,
+  #     "17": 110,
+  #     "18": 80,
+  #     "23": 82,
+  #   },
+  #   {
+  #     "8": 30,
+  #     "10": 100,
+  #     "12": 80,
+  #     "14": 50,
+  #     "15": 20,
+  #     "17": 110,
+  #     "18": 80,
+  #     "23": 82,
+  #   },
+
+
+  #   ]
+  # end
+
 
 end

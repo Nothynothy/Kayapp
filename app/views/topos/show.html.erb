@@ -2,7 +2,7 @@
 
 <div class="navbar fixed-top navbar-expand-sm navbar-light navbar-lewagon" id="topo-header">
   <div class="topo-name"> <%# FYI Class not used %>
-    <%= "#{@topo.river.name} - #{@topo.name}"  %>
+    <%= "#{@topo.river.name.capitalize} - #{@topo.name.capitalize}"  %>
   </div>
   <div class="favorite-icon active"> <%# FYI Class not used %>
     <%= image_tag "navbar/favorites.svg" %> <%# TODO : ajouter JS => si click, alors toggle.active + impact DB "%>
@@ -58,3 +58,22 @@
     </div>
   </div>
 </div>
+
+
+<p><% @topo_sites_name.each do |name| %></p>
+  <ul>
+  <li><%= name %></li>
+  </ul>
+<% end %>
+
+<p><% @topo_sites_code.each do |code| %></p>
+  <ul>
+  <li><%= code %></li>
+  </ul>
+<% end %>
+
+<% @topo_sites_levels.each do |value| %>
+  <ul>
+  <li><%= "#{value[:date]}      :    #{value[:level].to_i/100.0}" %></li>
+  </ul>
+<% end %>
