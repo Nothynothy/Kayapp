@@ -22,28 +22,20 @@ class ToposController < ApplicationController
 
   def water_data
     series_a = {
-      "8": 30,
-      "10": 100,
-      "12": 80,
-      "14": 50,
-      "15": 20,
-      "17": 110,
-      "18": 80,
-      "23": 82,
+      "10": 20,
+      "12": 100,
+      "18": 50,
+      "23": 51,
     }
     series_b = {
-      "8": 100,
-      "10": 10,
-      "12": 8,
-      "14": 5,
-      "15": 2,
-      "17": 10,
+      "10": 2,
+      "12": 10,
       "18": 50,
       "23": 51,
     }
     return [
-      {name: "Station A", data: series_a, color: "black"},
-      {name: "Station B", data: series_b, color: "orange"}
+      {name: "Station A", data: series_a, color: "orange"},
+      {name: "Station B", data: series_b, color: "black"}
     ]
   end
 
