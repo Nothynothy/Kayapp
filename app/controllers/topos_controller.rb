@@ -15,7 +15,6 @@ class ToposController < ApplicationController
     @arrival = Address.find(@topo.arrival_id)
     comments = Comment.where(topo_id: @topo.id)
     @alerts_count = comments.where(category: "alert", active: true).count
-
     @data = water_data
   end
 
@@ -46,6 +45,16 @@ class ToposController < ApplicationController
       {name: "Station A", data: series_a, color: "black"},
       {name: "Station B", data: series_b, color: "orange"}
     ]
+  end
+
+  def rom_to_int(rom)
+    roman_to_int = {  'I' => 1,
+                      'II' => 2,
+                      'III' => 3,
+                      'IV' => 4,
+                      'V' => 5,
+                      'VI' => 6 }
+    roman_to_int[rom]
   end
 
 end
