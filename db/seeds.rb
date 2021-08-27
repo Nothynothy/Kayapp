@@ -19,5 +19,5 @@ puts "#{User.count} new user(s) created. ✅"
 
 puts "[3/3] Seeding new favorites..."
 puts "..."
-Favorite.create!(user_id: nathan.id, topo_id: 53)
+Favorite.create!(user_id: nathan.id, topo_id: Topo.last.id)
 puts "#{Favorite.count} new favorite(s) created. ✅"

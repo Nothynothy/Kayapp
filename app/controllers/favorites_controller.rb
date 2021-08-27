@@ -6,6 +6,7 @@ class FavoritesController < ApplicationController
     else
       @presence = true
       @topos_fav = @favorites.map(&:topo) # => array d'instance de topo
+      @rivers_fav = @topos_fav.map(&:river) # => array d'instance de river
     end
   end
 
