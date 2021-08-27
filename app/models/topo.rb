@@ -10,7 +10,8 @@ class Topo < ApplicationRecord
   pg_search_scope :search_by_topo_and_river,
     against: [ :name ],
     associated_against: {
-      river: [ :name, :country, :region, :department ]
+      river: [ :name, :country, :region, :department ],
+      levels: [ :difficulty ]
     },
     using: {
       tsearch: { prefix: true } # <-- now `superman batm` will return something!

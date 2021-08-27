@@ -1,3 +1,7 @@
+.search {
+  position: relative;
+}
+
 .search-form-control {
   position: relative;
   padding-top: 15px;
@@ -25,6 +29,7 @@
 }
 
 #search-message {
-  margin-top: 120px;
+  position: absolute;
+  top: 300px;
   text-align: center;
 }
