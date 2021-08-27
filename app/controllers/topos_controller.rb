@@ -18,12 +18,6 @@ class ToposController < ApplicationController
   private
 
   def water_data
-    # series_a = [["2021-08-27T08:18:00Z", 100],
-    #   ["2021-05-07 00:00:00 UTC", 10],
-    #   ["20.day.ago", 8],
-    #   ["1789-04-29", 5],
-    #   ["2021-08-27 08:18:00", 100]
-    # ]
     series_a = {
       "10": 20,
       "12": 100,
@@ -31,14 +25,14 @@ class ToposController < ApplicationController
       "23": 51,
     }
     series_b = {
-      "9": 2,
-      "10": 10,
-      "11": 50,
-      "20": 51,
+      "10": 2,
+      "12": 10,
+      "18": 50,
+      "23": 51,
     }
     return [
-      {name: "Station A", data: series_a, color: "black"},
-      {name: "Station B", data: series_b, color: "orange"}
+      {name: "Station A", data: series_a, color: "orange"},
+      {name: "Station B", data: series_b, color: "black"}
     ]
   end
 
