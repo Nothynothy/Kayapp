@@ -1,4 +1,4 @@
-require'awesome_print'
+require 'awesome_print'
 
 class ApiHubeauRiverName < ApplicationService
   BASE_URL = "https://hubeau.eaufrance.fr/api/v1"
@@ -8,8 +8,9 @@ class ApiHubeauRiverName < ApplicationService
   end
 
   def call
-    uri = URI("#{BASE_URL}/hydrometrie/referentiel/sites?format=json&libelle_cours_eau=#{@name}&size=20")
+    uri = URI("#{BASE_URL}/hydrometrie/referentiel/sites?fields=code_site%2Clibelle_site&format=json&libelle_cours_eau=#{@name}")
     result = JSON.parse(Net::HTTP.get(uri))
-    ap result
+    # ap result['data'][0]['code_site']
+    result['data'].map { |key| key['code_site'] }
   end
 end
