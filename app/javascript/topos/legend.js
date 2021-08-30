@@ -1,4 +1,9 @@
-const closeBtn = document.querySelector('.close');
-console.log(closeBtn)
+const closeBtn = document.querySelector('.cross');
+const divLegend = document.querySelector('.search-legend');
+const closeLegend = () => {
+  closeBtn.addEventListener('click', () => {
+    divLegend.style.display = 'none';
+  })
+}
 
-export
+export { closeLegend };
