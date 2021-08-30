@@ -1,6 +1,6 @@
   <div class="container">
     <%# LIST TOPOS %>
-    <% if @presence%>
+    <% if @presence%> <%# ajouter le tri par rivière, avec @rivers_fav %>
       <%= render "shared/topos-cards", topos: @topos_fav %>
     <% else %>
     <div id="fav-false">

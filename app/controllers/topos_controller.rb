@@ -9,13 +9,27 @@ class ToposController < ApplicationController
     end
   end
 
+  def toggle_favorite
+    topo = Topo.find(params[:id])
+
+    @fav = Favorite.find_by(user_id: current_user.id, topo_id: topo.id)
+    if @fav
+      @fav.destroy
+    else
+      @fav = Favorite.create(user_id: current_user.id, topo_id: topo.id)
+    end
+  end
+
   def show
     @topo = Topo.find(params[:id])
     @departure = Address.find(@topo.departure_id)
     @arrival = Address.find(@topo.arrival_id)
+
     comments = Comment.where(topo_id: @topo.id)
     @alerts_count = comments.where(category: "alert", active: true).count
 
+    @favorite = Favorite.where(user_id: current_user.id, topo_id: @topo.id).exists?
+    
     @topo_sites_name = ApiHubeauSiteName.call(@topo.river.name)
     @topo_sites_code = ApiHubeauCodeSite.call(@topo.river.name)
     @topo_sites_info = ApiHubeauInfoSite.call(@topo.river.name)
@@ -72,6 +86,11 @@ class ToposController < ApplicationController
       date << s["date_obs"]
       releve << s["resultat_obs"]
     end
+  end
+
+  def river_data
+    @data = water_data
+    render json: @data.to_json
   end
 
   private

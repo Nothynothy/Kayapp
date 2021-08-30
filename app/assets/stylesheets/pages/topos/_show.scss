@@ -87,3 +87,11 @@
 #content-row{
   margin-right: 15px;
 }
+
+#favorite-icon {
+  color: white;
+
+  &.fav-active{
+    fill: white;
+  }
+}
