@@ -61,9 +61,14 @@ class ToposController < ApplicationController
   #   @topo_sites_levels = topo_sites_levels.flatten
   # end
 
+    # topo_sites_levels = []
+    # @topo_sites_info.each do |value|
+    #   data = ApiHubeauDataSite.call(value[:code])
+    #   topo_sites_levels << data
+    # end
+    # @topo_sites_levels = topo_sites_levels.flatten
 
 
-  # end
     @data = water_data
     # @data = [{name: "Station A", data: date, labels: releve, color: "black"}]
 
