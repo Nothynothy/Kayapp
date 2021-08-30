@@ -31,6 +31,7 @@ import "chartkick/chart.js";
 import { initMapbox } from '../plugins/init_mapbox';
 import { closeLegend } from '../topos/legend';
 
+
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
