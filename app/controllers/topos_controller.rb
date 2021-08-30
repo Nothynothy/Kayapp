@@ -2,7 +2,11 @@ class ToposController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @topos = Topo.all
+    if params[:query].present?
+      @topos = Topo.search_by_topo_and_river(params[:query])
+    else
+      @topos = Topo.all
+    end
   end
 
   def show
@@ -17,15 +21,12 @@ class ToposController < ApplicationController
     @topo_sites_info = ApiHubeauInfoSite.call(@topo.river.name)
 
     topo_sites_levels = []
-      @topo_sites_info.each do |value|
-        data = ApiHubeauDataSite.call(value[:code])
-        topo_sites_levels << data
-      end
-      @topo_sites_levels = topo_sites_levels.flatten
-
-
-
+    @topo_sites_info.each do |value|
+      data = ApiHubeauDataSite.call(value[:code])
+      topo_sites_levels << data
     end
+    @topo_sites_levels = topo_sites_levels.flatten
+
 
 
         # topo_sites_levels = []
@@ -49,5 +50,58 @@ class ToposController < ApplicationController
 
 
   # end
+    @data = water_data
+    # @data = [{name: "Station A", data: date, labels: releve, color: "black"}]
+
+    @json_data = [{
+                "date_obs" => "2021-08-26T17:30:00Z",
+            "resultat_obs" => 506.0
+        },
+        {
+                "date_obs" => "2021-08-26T17:30:00Z",
+            "resultat_obs" => 506.0
+        },
+        {
+                "date_obs" => "2021-08-26T17:25:00Z",
+            "resultat_obs" => 507.0
+        }]
+
+    date = [] #data:
+    releve = [] #labels:
+    @json_data.each do |s|
+      date << s["date_obs"]
+      releve << s["resultat_obs"]
+    end
+  end
+
+  private
+
+
+  def water_data
+    series_a = {
+      "8": 30,
+      "10": 100,
+      "12": 80,
+    }
+    series_b = {
+      "8": 100,
+      "10": 10,
+      "12": 8,
+    }
+    return [
+      {name: "Station A", data: series_a, color: "orange"},
+      {name: "Station B", data: series_b, color: "black"}
+    ]
+  end
+
+  def rom_to_int(rom)
+    roman_to_int = {  'I' => 1,
+                      'II' => 2,
+                      'III' => 3,
+                      'IV' => 4,
+                      'V' => 5,
+                      'VI' => 6 }
+    roman_to_int[rom]
+  end
 
 end

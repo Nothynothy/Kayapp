@@ -20,8 +20,9 @@
           width: "100%", height: "100%",
           ytitle: "Vol. d'eau (m3)", xtitle: "Heure",
           legend: true, label: "station 1",
-          loading: "Chargement des niveaux d'eau en cours, d'eau... 🚣‍♀️ 🎣 🦦",
-          empty: "Aucune donnée des niveaux d'eau disponible 😭"%>
+          loading: "Chargement en cours... 🚣‍♀️ 🎣 🦦",
+          empty: "Aucune donnée disponible 😭"
+          %>
     <div id="water-temp">
       <h3>20°</h3>
     </div>
@@ -44,7 +45,7 @@
     </div>
     <div class="row-6" id="content-row">
       <div class="col-sm">
-        <%= "[Method to insert] "%> <%# TODO: insert string LEVEL scrappé %>
+        <%= "topo.level"%> <%# TODO: insert string LEVEL scrappé %>
       </div>
       <div class="col-sm">
         <%= "#{@topo.length}" %>
