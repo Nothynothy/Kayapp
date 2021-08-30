@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   root to: 'topos#index'
   resources :topos, only: [:index, :show] do
     resources :comments, only: [:create, :update]
-    resources :favorites, only: [:create]
+    post :toggle_favorite, on: :member
+    get :river_data, on: :member
   end
   resources :favorites, only: [:index, :delete]
   resources :users, only: [:show]
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

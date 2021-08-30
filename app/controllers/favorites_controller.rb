@@ -10,11 +10,14 @@ class FavoritesController < ApplicationController
     end
   end
 
-  def create
-
+  def delete
+    favorite = Favorite.find(user_id: params[:user_id], topo_id: params[:topo_id])
+    favorite.destroy
   end
 
-  def delete
+  private
 
+  def params_topo
+    params.permit(:topo_id)
   end
 end

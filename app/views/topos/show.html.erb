@@ -2,10 +2,15 @@
 
 <div class="navbar fixed-top navbar-expand-sm navbar-light navbar-lewagon" id="topo-header">
   <div class="topo-name"> <%# FYI Class not used %>
-    <%= "#{@topo.river.name} - #{@topo.name}"  %>
+    <%= "#{@topo.river.name.capitalize} - #{@topo.name}"  %>
   </div>
-  <div class="favorite-icon active"> <%# FYI Class not used %>
-    <%= image_tag "navbar/favorites.svg" %> <%# TODO : ajouter JS => si click, alors toggle.active + impact DB "%>
+
+  <div>
+    <%= link_to toggle_favorite_topo_path(@topo), method: :post do %>
+      <svg id="favorite-icon" class="<%= 'fav-active' if @favorite %>" width="35" height="32" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+      </svg>
+    <% end %>
   </div>
 </div>
 
@@ -15,7 +20,7 @@
   </div>
 
   <div id="water-info">
-      <%= line_chart @data,
+      <%= line_chart river_data_topo_path(@topo),
           id:"water-graph",
           width: "100%", height: "100%",
           ytitle: "Vol. d'eau (m3)", xtitle: "Heure",
@@ -24,7 +29,7 @@
           empty: "Aucune donnée disponible 😭"
           %>
     <div id="water-temp">
-      <h3>20°</h3>
+      <h3>2°</h3>
     </div>
   </div>
 
@@ -45,7 +50,7 @@
     </div>
     <div class="row-6" id="content-row">
       <div class="col-sm">
-        <%= "#{@topo.find_level}"%>
+        <%= @topo.find_level.count > 1 ? "#{@topo.find_level[0]} - #{@topo.find_level[1]}" : "#{@topo.find_level[0]}" %>
       </div>
       <div class="col-sm">
         <%= "#{@topo.length}" %>
