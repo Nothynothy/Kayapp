@@ -39,7 +39,7 @@
               <% if topo.has_alert? %>
                 <div class="alert-level <%= topo.has_severity_2_alert? ? 'severity2' : '' %>"><i class="fas fa-exclamation-triangle"></i></div>
               <% end %>
-              <div class="circle <%= topo.river.safe? ? 'safe' : 'unsafe' %>"></div>
+              <div class="<%= topo.river.safe? ? 'safe' : 'unsafe' %>"></div>
             </div>
           </div>
         </div>
