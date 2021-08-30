@@ -15,8 +15,10 @@ class ToposController < ApplicationController
     @fav = Favorite.find_by(user_id: current_user.id, topo_id: topo.id)
     if @fav
       @fav.destroy
+      redirect_to topo_path(params[:id])
     else
       @fav = Favorite.create(user_id: current_user.id, topo_id: topo.id)
+      redirect_to favorites_path
     end
   end
 
@@ -29,7 +31,7 @@ class ToposController < ApplicationController
     @alerts_count = comments.where(category: "alert", active: true).count
 
     @favorite = Favorite.where(user_id: current_user.id, topo_id: @topo.id).exists?
-    
+
     @topo_sites_name = ApiHubeauSiteName.call(@topo.river.name)
     @topo_sites_code = ApiHubeauCodeSite.call(@topo.river.name)
     @topo_sites_info = ApiHubeauInfoSite.call(@topo.river.name)
