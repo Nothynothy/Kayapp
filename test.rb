@@ -4,4 +4,4 @@ ap "je sui sla"
 river = Topo.find(47).river
 
 # ap StatsForRiver.call(river)
-ap StatsForRiver.call(river)
+p StatsForRiver.call(river)

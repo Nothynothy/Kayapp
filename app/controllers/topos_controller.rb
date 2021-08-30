@@ -16,40 +16,18 @@ class ToposController < ApplicationController
     comments = Comment.where(topo_id: @topo.id)
     @alerts_count = comments.where(category: "alert", active: true).count
 
-    @topo_sites_name = ApiHubeauSiteName.call(@topo.river.name)
-    @topo_sites_code = ApiHubeauCodeSite.call(@topo.river.name)
-    @topo_sites_info = ApiHubeauInfoSite.call(@topo.river.name)
+    # @topo_sites_name = ApiHubeauSiteName.call(@topo.river.name)
+    # @topo_sites_code = ApiHubeauCodeSite.call(@topo.river.name)
+    # @topo_sites_info = ApiHubeauInfoSite.call(@topo.river.name)
 
-    topo_sites_levels = []
-    @topo_sites_info.each do |value|
-      data = ApiHubeauDataSite.call(value[:code])
-      topo_sites_levels << data
-    end
-    @topo_sites_levels = topo_sites_levels.flatten
-
-
-
-        # topo_sites_levels = []
-        # @topo_sites_code.each do |value|
-        #   data = ApiHubeauDataSite.call(value)
-        #   topo_sites_levels << data
-        #     @topo_sites_name.each do |name|
-        #       @data_site = {name: name, data: topo_sites_levels.flatten }
-        #   end
-        # end
-        # @topo_sites_levels = topo_sites_levels.flatten
-
-  #   topo_sites_levels = []
-  #   @topo_sites_code.each do |value|
-  #     data = ApiHubeauDataSite.call(value)
-  #     topo_sites_levels << data
-  #   end
-  #   @topo_sites_levels = topo_sites_levels.flatten
-  # end
+    # topo_sites_levels = []
+    # @topo_sites_info.each do |value|
+    #   data = ApiHubeauDataSite.call(value[:code])
+    #   topo_sites_levels << data
+    # end
+    # @topo_sites_levels = topo_sites_levels.flatten
 
 
-
-  # end
     @data = water_data
     # @data = [{name: "Station A", data: date, labels: releve, color: "black"}]
 
