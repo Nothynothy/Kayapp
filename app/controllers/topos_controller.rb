@@ -14,47 +14,40 @@ class ToposController < ApplicationController
 
     @topo_sites_name = ApiHubeauSiteName.call(@topo.river.name)
     @topo_sites_code = ApiHubeauCodeSite.call(@topo.river.name)
+    @topo_sites_info = ApiHubeauInfoSite.call(@topo.river.name)
 
     topo_sites_levels = []
-    @topo_sites_code.each do |value|
-      data = ApiHubeauDataSite.call(value)
-      topo_sites_levels << data
+      @topo_sites_info.each do |value|
+        data = ApiHubeauDataSite.call(value[:code])
+        topo_sites_levels << data
+      end
+      @topo_sites_levels = topo_sites_levels.flatten
+
+
+
     end
 
-    @topo_sites_levels = topo_sites_levels.flatten
-  end
-    # @levels =
-        # codes = ApiHubeauRiverName.call('Albarine')
-    # codes.each do code
-    #  levels = ApiHubeauCodeSite.call(code)
-      #  levels.each
-    # end
 
-  #   @graphs = [
-  #   {
-  #     "8": 30,
-  #     "10": 100,
-  #     "12": 80,
-  #     "14": 50,
-  #     "15": 20,
-  #     "17": 110,
-  #     "18": 80,
-  #     "23": 82,
-  #   },
-  #   {
-  #     "8": 30,
-  #     "10": 100,
-  #     "12": 80,
-  #     "14": 50,
-  #     "15": 20,
-  #     "17": 110,
-  #     "18": 80,
-  #     "23": 82,
-  #   },
+        # topo_sites_levels = []
+        # @topo_sites_code.each do |value|
+        #   data = ApiHubeauDataSite.call(value)
+        #   topo_sites_levels << data
+        #     @topo_sites_name.each do |name|
+        #       @data_site = {name: name, data: topo_sites_levels.flatten }
+        #   end
+        # end
+        # @topo_sites_levels = topo_sites_levels.flatten
 
-
-  #   ]
+  #   topo_sites_levels = []
+  #   @topo_sites_code.each do |value|
+  #     data = ApiHubeauDataSite.call(value)
+  #     topo_sites_levels << data
+  #   end
+  #   @topo_sites_levels = topo_sites_levels.flatten
   # end
 
+
+
+  # end
 
 end

@@ -60,6 +60,8 @@
 </div>
 
 
+
+<%# TOPO DATA %>
 <p><% @topo_sites_name.each do |name| %></p>
   <ul>
   <li><%= name %></li>
@@ -72,8 +74,14 @@
   </ul>
 <% end %>
 
-<% @topo_sites_levels.each do |value| %>
-  <ul>
-  <li><%= "#{value[:date]}      :    #{value[:level].to_i/100.0}" %></li>
-  </ul>
+
+<% @topo_sites_info.each do |key| %>
+  <% @topo_sites_levels.each do |value| %>
+  <% if value.empty? == false %>
+  <% d = DateTime.parse(value[:date]) %>
+    <ul>
+    <li><%= " #{key[:name]}    =>  #{d.day} => #{d.hour}:#{d.min}      =>     #{value[:level].to_i/100.0} m3/s" %></li>
+    </ul>
+    <% end %>
+  <% end %>
 <% end %>
