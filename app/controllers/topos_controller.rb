@@ -29,7 +29,42 @@ class ToposController < ApplicationController
     @alerts_count = comments.where(category: "alert", active: true).count
 
     @favorite = Favorite.where(user_id: current_user.id, topo_id: @topo.id).exists?
+    
+    @topo_sites_name = ApiHubeauSiteName.call(@topo.river.name)
+    @topo_sites_code = ApiHubeauCodeSite.call(@topo.river.name)
+    @topo_sites_info = ApiHubeauInfoSite.call(@topo.river.name)
 
+    topo_sites_levels = []
+    @topo_sites_info.each do |value|
+      data = ApiHubeauDataSite.call(value[:code])
+      topo_sites_levels << data
+    end
+    @topo_sites_levels = topo_sites_levels.flatten
+
+
+
+        # topo_sites_levels = []
+        # @topo_sites_code.each do |value|
+        #   data = ApiHubeauDataSite.call(value)
+        #   topo_sites_levels << data
+        #     @topo_sites_name.each do |name|
+        #       @data_site = {name: name, data: topo_sites_levels.flatten }
+        #   end
+        # end
+        # @topo_sites_levels = topo_sites_levels.flatten
+
+  #   topo_sites_levels = []
+  #   @topo_sites_code.each do |value|
+  #     data = ApiHubeauDataSite.call(value)
+  #     topo_sites_levels << data
+  #   end
+  #   @topo_sites_levels = topo_sites_levels.flatten
+  # end
+
+
+
+  # end
+    @data = water_data
     # @data = [{name: "Station A", data: date, labels: releve, color: "black"}]
 
     @json_data = [{
@@ -47,10 +82,10 @@ class ToposController < ApplicationController
 
     date = [] #data:
     releve = [] #labels:
-      @json_data.each do |s|
-        date << s["date_obs"]
-        releve << s["resultat_obs"]
-      end
+    @json_data.each do |s|
+      date << s["date_obs"]
+      releve << s["resultat_obs"]
+    end
   end
 
   def river_data

@@ -2,7 +2,7 @@
 
 <div class="navbar fixed-top navbar-expand-sm navbar-light navbar-lewagon" id="topo-header">
   <div class="topo-name"> <%# FYI Class not used %>
-    <%= "#{@topo.river.name.capitalize} - #{@topo.name}"  %>
+    <%= "#{@topo.river.name.capitalize} - #{@topo.name.capitalize}"  %>
   </div>
 
   <div>
@@ -64,3 +64,30 @@
     </div>
   </div>
 </div>
+
+
+
+<%# TOPO DATA %>
+<p><% @topo_sites_name.each do |name| %></p>
+  <ul>
+  <li><%= name %></li>
+  </ul>
+<% end %>
+
+<p><% @topo_sites_code.each do |code| %></p>
+  <ul>
+  <li><%= code %></li>
+  </ul>
+<% end %>
+
+
+<% @topo_sites_info.each do |key| %>
+  <% @topo_sites_levels.each do |value| %>
+  <% if value.empty? == false %>
+  <% d = DateTime.parse(value[:date]) %>
+    <ul>
+    <li><%= " #{key[:name]}    =>  #{d.day} => #{d.hour}:#{d.min}      =>     #{value[:level].to_i/100.0} m3/s" %></li>
+    </ul>
+    <% end %>
+  <% end %>
+<% end %>
