@@ -5,7 +5,7 @@ class AddressesController < ApplicationController
       {
         lat: address.latitude,
         lng: address.longitude,
-        info_window: render_to_string(partial: "info_window", locals: { address: address })
+        info_window: render_to_string(partial: "info_window", locals: { address: address }),
       }
     end
   end
