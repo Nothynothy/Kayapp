@@ -71,7 +71,6 @@
 
 .severity2 {
   color: $red;
-  font-weight: bolder;
 }
 
 .circle {
@@ -81,11 +80,13 @@
 }
 
 .unsafe {
-  background: $red;
+  font-size: 20px;
+  color: $red;
 }
 
 .safe {
-  background-color: $green;
+  font-size: 20px;
+  color: $green;
 }
 
 .topo-level {

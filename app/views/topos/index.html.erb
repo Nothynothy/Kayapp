@@ -10,6 +10,38 @@
         </button>
       </div>
     <% end %>
+    <div class='search-legend'>
+      <h4>Niveau d'eau:</h4>
+      <div class='legend'>
+        <i class="fas fa-check safe"></i>
+        <h4>Favorable</h4>
+      </div>
+      <div class='legend'>
+        <i class="fas fa-times unsafe"></i>
+        <h4>Défavorable</h4>
+      </div>
+      <h4>Alert:</h4>
+      <div class='legend'>
+        <i class="fas fa-exclamation-triangle alert-level"></i>
+        <h4>Praticable</h4>
+      </div>
+      <div class='legend'>
+        <i class="fas fa-exclamation-triangle alert-level severity2"></i>
+        <h4>Impraticable</h4>
+      </div>
+      <div class='search-ex'>
+        <div>
+          <h4>Exemple:</h4>
+          <i class="fas fa-exclamation-triangle alert-level"></i>
+          <i class="fas fa-check safe"></i>
+        </div>
+        <p>
+          La rivière est praticable, mais attention un danger a été signalé sur ce parcours.
+          Vous pouvez consulter le détail de l'alerte dans le topo.
+        </p>
+      </div>
+      <i class="fas fa-times cross"></i>
+    </div>
     <% if @topos.count == 0 %>
       <h4 id='search-message'>Désolé nous ne trouvons aucun topo pour toi 🤦🏻‍♂️</h4>
     <% else %>
@@ -18,5 +50,5 @@
   </div>
 
   <%# LIST TOPOS %>
-    <%= render "shared/topos-cards", topos: @topos %>
+  <%= render 'shared/topos-cards', topos: @topos %>
 </div>
