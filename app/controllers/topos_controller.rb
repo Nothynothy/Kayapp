@@ -16,22 +16,42 @@ class ToposController < ApplicationController
     comments = Comment.where(topo_id: @topo.id)
     @alerts_count = comments.where(category: "alert", active: true).count
     @data = water_data
+    # @data = [{name: "Station A", data: date, labels: releve, color: "black"}]
+
+    @json_data = [{
+                "date_obs" => "2021-08-26T17:30:00Z",
+            "resultat_obs" => 506.0
+        },
+        {
+                "date_obs" => "2021-08-26T17:30:00Z",
+            "resultat_obs" => 506.0
+        },
+        {
+                "date_obs" => "2021-08-26T17:25:00Z",
+            "resultat_obs" => 507.0
+        }]
+
+    date = [] #data:
+    releve = [] #labels:
+      @json_data.each do |s|
+        date << s["date_obs"]
+        releve << s["resultat_obs"]
+      end
   end
 
   private
 
+
   def water_data
     series_a = {
-      "10": 20,
-      "12": 100,
-      "18": 50,
-      "23": 51,
+      "8": 30,
+      "10": 100,
+      "12": 80,
     }
     series_b = {
-      "10": 2,
-      "12": 10,
-      "18": 50,
-      "23": 51,
+      "8": 100,
+      "10": 10,
+      "12": 8,
     }
     return [
       {name: "Station A", data: series_a, color: "orange"},
