@@ -9,6 +9,8 @@ class ApiHubeauInfoSite < ApplicationService
 
   def call
     uri = URI("#{BASE_URL}/hydrometrie/referentiel/sites?fields=code_site%2Clibelle_site&format=json&libelle_cours_eau=#{@name}")
+
+    ap uri
     result = JSON.parse(Net::HTTP.get(uri))
     result['data'].map { |key| { name: key['libelle_site'], code: key['code_site'] } }
   end
