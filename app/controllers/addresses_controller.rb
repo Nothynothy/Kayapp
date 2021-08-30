@@ -4,7 +4,8 @@ class AddressesController < ApplicationController
     @markers = @addresses.geocoded.map do |address|
       {
         lat: address.latitude,
-        lng: address.longitude
+        lng: address.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { address: address })
       }
     end
   end
