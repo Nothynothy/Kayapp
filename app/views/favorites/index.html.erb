@@ -1,4 +1,16 @@
   <div class="container">
+
+    <div class='fav-title'>
+      <h2>Vos favoris (<%= @favorites.count == 0 ? 0 : @favorites.count %>)</h2>
+    </div>
+
+
+    <div class='fav-river-title'>
+      <% @rivers_fav.sort_by(&:name).each do |river| %>
+        <h3><%= river.name.capitalize %></h3>
+      <% end %>
+    </div>
+
     <%# LIST TOPOS %>
     <% if @presence%> <%# ajouter le tri par rivière, avec @rivers_fav %>
       <%= render "shared/topos-cards", topos: @topos_fav %>
