@@ -5,7 +5,8 @@ class ToposController < ApplicationController
     if params[:query].present?
       @topos = Topo.search_by_topo_and_river(params[:query])
     else
-      @topos = Topo.all
+      find_topo_by_address
+      @topos = Topo.all if @topos.count.zero?
     end
   end
 
@@ -32,92 +33,25 @@ class ToposController < ApplicationController
 
     @favorite = Favorite.where(user_id: current_user.id, topo_id: @topo.id).exists?
 
-    @topo_sites_name = ApiHubeauSiteName.call(@topo.river.name)
-    @topo_sites_code = ApiHubeauCodeSite.call(@topo.river.name)
-    @topo_sites_info = ApiHubeauInfoSite.call(@topo.river.name)
-
-    topo_sites_levels = []
-    @topo_sites_info.each do |value|
-      data = ApiHubeauDataSite.call(value[:code])
-      topo_sites_levels << data
-    end
-    @topo_sites_levels = topo_sites_levels.flatten
-
-
-
-        # topo_sites_levels = []
-        # @topo_sites_code.each do |value|
-        #   data = ApiHubeauDataSite.call(value)
-        #   topo_sites_levels << data
-        #     @topo_sites_name.each do |name|
-        #       @data_site = {name: name, data: topo_sites_levels.flatten }
-        #   end
-        # end
-        # @topo_sites_levels = topo_sites_levels.flatten
-
-  #   topo_sites_levels = []
-  #   @topo_sites_code.each do |value|
-  #     data = ApiHubeauDataSite.call(value)
-  #     topo_sites_levels << data
-  #   end
-  #   @topo_sites_levels = topo_sites_levels.flatten
-  # end
-
-    # topo_sites_levels = []
-    # @topo_sites_info.each do |value|
-    #   data = ApiHubeauDataSite.call(value[:code])
-    #   topo_sites_levels << data
-    # end
-    # @topo_sites_levels = topo_sites_levels.flatten
-
-
-    @data = water_data
-    # @data = [{name: "Station A", data: date, labels: releve, color: "black"}]
-
-    @json_data = [{
-                "date_obs" => "2021-08-26T17:30:00Z",
-            "resultat_obs" => 506.0
-        },
-        {
-                "date_obs" => "2021-08-26T17:30:00Z",
-            "resultat_obs" => 506.0
-        },
-        {
-                "date_obs" => "2021-08-26T17:25:00Z",
-            "resultat_obs" => 507.0
-        }]
-
-    date = [] #data:
-    releve = [] #labels:
-    @json_data.each do |s|
-      date << s["date_obs"]
-      releve << s["resultat_obs"]
+    stats = StatsForRiver.call(@topo.river)
+    @data = stats.each do |station|
+      station[:data] = station[:data].map {|set| [set[:date], set[:level]]}.to_h
     end
   end
 
-  def river_data
-    @data = water_data
-    render json: @data.to_json
-  end
+    private
 
-  private
-
-
-  def water_data
-    series_a = {
-      "8": 30,
-      "10": 100,
-      "12": 80,
-    }
-    series_b = {
-      "8": 100,
-      "10": 10,
-      "12": 8,
-    }
-    return [
-      {name: "Station A", data: series_a, color: "orange"},
-      {name: "Station B", data: series_b, color: "black"}
-    ]
+  def find_topo_by_address
+    ip request.remote_ip
+    ip = `curl http://ipecho.net/plain` if ip == "::1"
+    address = Geocoder.search(ip)
+    topo_addresses = Address.near("#{address[0].city}, #{address[0].country}", 100)
+    @topos = []
+    topo_addresses.each do |topo_address|
+      sql_query = "departure_id = #{topo_address.id} OR arrival_id = #{topo_address.id}"
+      topo = Topo.where(sql_query)
+      @topos << topo[0]
+    end
   end
 
   def rom_to_int(rom)
@@ -129,5 +63,23 @@ class ToposController < ApplicationController
                       'VI' => 6 }
     roman_to_int[rom]
   end
-
 end
+
+  # def water_data
+  #   series_a = {
+  #     "2021-08-31 07:05:00" => 30,
+  #     "2021-08-31 08:05:00" => 100,
+  #     "2021-08-31 09:05:00" => 80,
+  #   }
+  #   series_b = {
+  #     "2021-08-31 07:05:00" => 100,
+  #     "2021-08-31 08:05:00" => 10,
+  #     "2021-08-31 09:05:00" => 8,
+  #   }
+  #   data = [
+  #     {name: "Station A", data: series_a, color: "orange"},
+  #     {name: "Station B", data: series_b, color: "black"}
+  #   ]
+  #   ap data
+  #   return data
+  # end

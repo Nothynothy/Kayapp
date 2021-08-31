@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
     comment.active = true
     comment.category = 'alert'
     comment.user = current_user
+    comment.topo = Topo
     raise
   end
 
