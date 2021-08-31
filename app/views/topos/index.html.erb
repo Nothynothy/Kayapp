@@ -45,7 +45,7 @@
     <% if @topos.count == 0 %>
       <h4 id='search-message'>Désolé nous ne trouvons aucun topo pour toi 🤦🏻‍♂️</h4>
     <% else %>
-      <h4>(<%= @topos.count %>) <%= @topos.count <= 1 ? 'Topo' : 'Topos' %></h4>
+      <h4>(<%= @topos.count %>) <%= @topos.count <= 1 ? 'Topo autour de toi' : 'Topos autour de toi' %></h4>
     <% end %>
   </div>
 

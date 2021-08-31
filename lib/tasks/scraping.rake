@@ -7,16 +7,9 @@ def start
   print 'River'.blue
   puts ' ...'
 
-  print 'Destroy all '
-  print 'Level'.green
-  print ', '
-  print 'Topo'.red
-  print ' and '
-  print 'River'.blue
-  puts ' ...'
-
   Level.destroy_all
   Topo.destroy_all
+  Address.destroy_all
   River.destroy_all
 end
 
