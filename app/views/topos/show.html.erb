@@ -15,22 +15,38 @@
 </div>
 
 <div class="container topo">
-  <div class="alert-banner">
-    <div id='alert-title'>
-      <div>
-        <i class="fas fa-exclamation-triangle"></i>
-        <span><%= "#{"Alerte".pluralize(@alerts_count)} (#{@alerts_count})"%></span>
+  <% if @topo.has_alert? %>
+    <div class="alert-banner">
+      <div id='alert-title'>
+        <div>
+          <i class="fas fa-exclamation-triangle"></i>
+          <span><%= "#{"Alerte".pluralize(@alerts_count)} (#{@alerts_count})"%></span>
+        </div>
+        <i class="fas fa-chevron-down"></i>
       </div>
-      <i class="fas fa-chevron-down"></i>
+      <div class="alert-content">
+        <% @comments.each do |comment| %>
+          <% if comment.active %>
+            <div class='alert-message'>
+              <div class="alert-type">
+                <h4>Type</h4>
+                <span><%= comment.alert_type %></span>
+              </div>
+              <div class="alert-type">
+                <h4>Praticable</h4>
+                <span><%= comment.severity == 'Praticable' ? 'Oui' : 'Non' %></span>
+              </div>
+              <p><%= comment.description %></p>
+              <h5>Posté le <%= comment.updated_at.strftime("%d") %>/<%= comment.updated_at.strftime("%m") %>/<%= comment.updated_at.year %> à <%= comment.updated_at.hour %>h<%= comment.updated_at.min %></h5>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
     </div>
-  </div>
-<<<<<<< HEAD
+  <% end %>
   <%= link_to 'Add a comment', new_topo_comment_path(@topo)%>
-=======
 
 <%# river_data_topo_path(@topo) %>
-
->>>>>>> master
   <div id="water-info">
       <%= line_chart @data,
           id:"water-graph",

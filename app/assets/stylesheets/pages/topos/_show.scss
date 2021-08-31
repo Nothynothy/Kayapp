@@ -1,9 +1,8 @@
 #topo-header{
   justify-content: space-between;
   color: $white;
-  font-size: 36px;
+  font-size: 25px;
 }
-
 
 #favorite-icon {
   color: white;
@@ -31,11 +30,49 @@
   border-radius: 25px;
   padding: 0px 25px;
   #alert-title {
-    margin-top: 7px;
-    font-size: 24px;
+    margin-top: 10px;
+    font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+}
+.alert-content {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility, opacity 0ms linear;
+  transition-delay: 0ms;
+  height: 395px;
+  overflow-y: scroll;
+  margin-top: 20px;
+  .alert-type {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  h4 {
+    font-size: 18px;
+    color: $blue;
+    margin: 0px;
+    margin-right: 10px;
+  }
+  h5 {
+    font-size: 14px;
+    margin: 0px;
+  }
+  span {
+    font-size: 18px;
+  }
+  p {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 5px;
+  }
+  .alert-message {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
   }
 }
 
@@ -43,6 +80,12 @@
   height: calc(100% - 140px);
   .fa-chevron-down {
     transform: rotate(180deg);
+  }
+  .alert-content {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility, opacity 100ms linear;
+    transition-delay: 200ms;
   }
 }
 

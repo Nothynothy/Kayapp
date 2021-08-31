@@ -10,8 +10,12 @@ class CommentsController < ApplicationController
     comment.active = true
     comment.category = 'alert'
     comment.user = current_user
-    comment.topo = Topo
-    raise
+    comment.topo_id = params[:topo_id]
+    if comment.save
+      redirect_to topo_path(params[:topo_id])
+    else
+      render :new
+    end
   end
 
   def update

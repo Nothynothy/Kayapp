@@ -21,7 +21,7 @@ class Topo < ApplicationRecord
   end
 
   def has_alert?
-    comments.where(category: "alert").any?
+    comments.where(category: "alert", active: true).any?
   end
 
   def find_level
