@@ -5,23 +5,36 @@
 }
 
 .topo{
-  margin-top: 80px;
+  margin-top: 130px;
 }
 
-#alert-banner {
+.alert-banner {
+  position: absolute;
+  top: 70px;
+  left: 15px;
+  right: 15px;
+  z-index: 1000;
+  background-color: white;
   height: 50px;
+  transition-property: height;
+  transition-duration: 200ms;
+  border: 1px solid $red;
+  border-radius: 25px;
+  padding: 0px 25px;
+  #alert-title {
+    margin-top: 7px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
 
-  border-style: solid;
-  border-color: $red;
-  border-radius: 30px;
-  border-width: 1px;
-
-  margin: 10px auto;
-  padding-left: 20px;
-  font-size: 24px;
-
-  display: flex;
-  place-items: center;
+.alert-display {
+  height: calc(100% - 140px);
+  .fa-chevron-down {
+    transform: rotate(180deg);
+  }
 }
 
 #water-info{
@@ -65,25 +78,30 @@
 }
 
 #key-info{
-  height: 110px;
-
-  border-style: solid;
-  border-color: $blue;
-  border-radius: 10px;
-  border-width: 1px;
-
-  margin: 10px auto;
-  display: flex;
-  justify-content: center;
-  place-items: center;
-
-  font-size: 12px;
+  background-color: white;
+  border: 1px solid $blue;
+  border-radius: 8px;
+  padding: 10px;
+  h4 {
+    font-size: 18px;
+    color: $blue;
+    margin: 0px;
+  }
+  span {
+    font-size: 18px;
+  }
 }
 
-#category-row{
-  color: $blue;
-  text-align: right;
+.key-text {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 20px;
+  row-gap: 3px;
+  h4 {
+    justify-self: end;
+  }
 }
+
 #content-row{
   margin-right: 15px;
 }

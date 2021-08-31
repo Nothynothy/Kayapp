@@ -15,8 +15,14 @@
 </div>
 
 <div class="container topo">
-  <div id="alert-banner">
-    <%= "⚠️  #{"Alerte".pluralize(@alerts_count)} (#{@alerts_count})"%> <%# TODO: warning à rendre dynamique %>
+  <div class="alert-banner">
+    <div id='alert-title'>
+      <div>
+        <i class="fas fa-exclamation-triangle"></i>
+        <span><%= "#{"Alerte".pluralize(@alerts_count)} (#{@alerts_count})"%></span>
+      </div>
+      <i class="fas fa-chevron-down"></i>
+    </div>
   </div>
 
   <div id="water-info">
@@ -34,33 +40,15 @@
   </div>
 
   <div id="key-info">
-    <div class="row-3" id="category-row">
-      <div class="col-sm">
-        Difficulté
-      </div>
-      <div class="col-sm">
-        Longueur
-      </div>
-      <div class="col-sm">
-        Départ
-      </div>
-      <div class="col-sm">
-        Arrivée
-      </div>
-    </div>
-    <div class="row-6" id="content-row">
-      <div class="col-sm">
-        <%= @topo.find_level.count > 1 ? "#{@topo.find_level[0]} - #{@topo.find_level[1]}" : "#{@topo.find_level[0]}" %>
-      </div>
-      <div class="col-sm">
-        <%= "#{@topo.length}" %>
-      </div>
-      <div class="col-sm">
-        <%= @departure.name %>
-      </div>
-      <div class="col-sm">
-        <%= @arrival.name %>
-      </div>
+    <div class='key-text'>
+      <h4>Difficulté</h4>
+      <span><%= @topo.find_level.count > 1 ? "#{@topo.find_level[0]} - #{@topo.find_level[1]}" : "#{@topo.find_level[0]}" %></span>
+      <h4>Longueur</h4>
+      <span><%= "#{@topo.length}" %></span>
+      <h4>Départ</h4>
+      <span><%= @departure.name.capitalize %></span>
+      <h4>Arrivée</h4>
+      <span><%= @arrival.name.capitalize %></span>
     </div>
   </div>
 </div>
