@@ -80,6 +80,7 @@
   height: calc(100% - 140px);
   .fa-chevron-down {
     transform: rotate(180deg);
+    transition: transform 100ms;
   }
   .alert-content {
     visibility: visible;
