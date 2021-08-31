@@ -4,6 +4,15 @@
   font-size: 36px;
 }
 
+
+#favorite-icon {
+  color: white;
+
+  &.fav-active{
+    fill: white;
+  }
+}
+
 .topo{
   margin-top: 80px;
 }
@@ -25,7 +34,7 @@
 }
 
 #water-info{
-  height: 230px;
+  height: 460px;
 
   border-style: solid;
   border-color: $black;
@@ -86,12 +95,4 @@
 }
 #content-row{
   margin-right: 15px;
-}
-
-#favorite-icon {
-  color: white;
-
-  &.fav-active{
-    fill: white;
-  }
 }
