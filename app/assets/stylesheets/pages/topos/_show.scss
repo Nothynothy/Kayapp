@@ -42,7 +42,7 @@
   opacity: 0;
   transition: visibility, opacity 0ms linear;
   transition-delay: 0ms;
-  height: 395px;
+  height: 445px;
   overflow-y: scroll;
   margin-top: 20px;
   .alert-type {
@@ -87,6 +87,27 @@
     transition: visibility, opacity 100ms linear;
     transition-delay: 200ms;
   }
+}
+
+.alert-status {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  div a {
+    padding: 4px 6px;
+    color: black;
+  }
+}
+
+.btn-red {
+  border-radius: 13.5px;
+  border: 1px solid $red;
+}
+
+.btn-yellow {
+  border-radius: 13.5px;
+  border: 1px solid $yellow;
 }
 
 #water-info{

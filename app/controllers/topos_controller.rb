@@ -29,7 +29,7 @@ class ToposController < ApplicationController
     @arrival = Address.find(@topo.arrival_id)
 
     @comments = Comment.where(topo: @topo).sort_by(&:updated_at).reverse
-    @alerts_count = @comments.select { |comment| comment.category == 'alert' }.count
+    @alerts_count = @comments.select { |comment| comment.category == 'alert' && comment.active == true }.count
     @favorite = Favorite.where(user_id: current_user.id, topo_id: @topo.id).exists?
 
     stats = StatsForRiver.call(@topo.river)

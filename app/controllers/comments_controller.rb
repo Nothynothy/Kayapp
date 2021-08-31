@@ -19,7 +19,10 @@ class CommentsController < ApplicationController
   end
 
   def update
-
+    comment = Comment.find(params[:id])
+    comment.active = false
+    comment.save
+    redirect_to topo_path(params[:topo_id])
   end
 
   private

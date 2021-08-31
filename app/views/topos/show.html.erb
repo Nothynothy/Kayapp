@@ -38,6 +38,13 @@
               </div>
               <p><%= comment.description %></p>
               <h5>Posté le <%= comment.updated_at.strftime("%d") %>/<%= comment.updated_at.strftime("%m") %>/<%= comment.updated_at.year %> à <%= comment.updated_at.hour %>h<%= comment.updated_at.min %></h5>
+              <div class='alert-status'>
+                <h5>Danger toujours présent?</h5>
+                <div>
+                  <%= link_to 'oui', root_path, class: 'btn-red' %>
+                  <%= link_to 'non', topo_comment_path(@topo, comment), method: :patch ,class: 'btn-yellow' %>
+                </div>
+              </div>
             </div>
           <% end %>
         <% end %>
