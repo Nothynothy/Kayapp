@@ -35,10 +35,13 @@ class ToposController < ApplicationController
   end
 
   def river_data
+    @topo = Topo.find(params[:id])
+
     stats = StatsForRiver.call(@topo.river)
-    @data = stats.each do |station|
+    data = stats.each do |station|
       station[:data] = station[:data].map { |set| [set[:date], set[:level]] }.to_h
     end
+    render json: data.to_json
   end
 
   private

@@ -13,7 +13,7 @@ class StatsForRiver < ApplicationService
     end
     sites.each do |site|
       site[:data].each do |data|
-        data[:date].gsub!(/[TZ]/, 'T' => '_', 'Z' => '')
+        data[:date].gsub!(/[TZ]/, 'T' => ' ', 'Z' => '')
         data[:level] = data[:level]/1000
       end
     end
