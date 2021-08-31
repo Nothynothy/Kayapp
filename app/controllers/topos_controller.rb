@@ -42,6 +42,11 @@ class ToposController < ApplicationController
     private
 
   def find_topo_by_address
+    ap "DEBUG PROD"
+    ap request.remote_ip
+    ap "---------------------"
+    ap request
+
     ip = `curl http://ipecho.net/plain`
     address = Geocoder.search(ip)
     topo_addresses = Address.near("#{address[0].city}, #{address[0].country}", 100)
