@@ -42,13 +42,14 @@ class ToposController < ApplicationController
       topo_sites_levels << data
     end
     @topo_sites_levels = topo_sites_levels.flatten
+  end
 
+  def river_data
     stats = StatsForRiver.call(@topo.river)
 
     @data = stats.each do |station|
-      station[:data] = station[:data].map {|set| [set[:date], set[:level]]}.to_h
+      station[:data] = station[:data].map { |set| [set[:date], set[:level]] }.to_h
     end
-
   end
 
     private
