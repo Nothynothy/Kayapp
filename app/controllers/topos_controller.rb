@@ -5,7 +5,8 @@ class ToposController < ApplicationController
     if params[:query].present?
       @topos = Topo.search_by_topo_and_river(params[:query])
     else
-      @topos = Topo.all
+      find_topo_by_address
+      @topos = Topo.all if @topos.count.zero?
     end
   end
 
@@ -31,38 +32,38 @@ class ToposController < ApplicationController
     @alerts_count = comments.where(category: "alert", active: true).count
 
     @favorite = Favorite.where(user_id: current_user.id, topo_id: @topo.id).exists?
-
-    @topo_sites_name = ApiHubeauSiteName.call(@topo.river.name)
-    @topo_sites_code = ApiHubeauCodeSite.call(@topo.river.name)
-    @topo_sites_info = ApiHubeauInfoSite.call(@topo.river.name)
-
-    topo_sites_levels = []
-    @topo_sites_info.each do |value|
-      data = ApiHubeauDataSite.call(value[:code])
-      topo_sites_levels << data
-    end
-    @topo_sites_levels = topo_sites_levels.flatten
   end
 
   def river_data
     stats = StatsForRiver.call(@topo.river)
-
     @data = stats.each do |station|
       station[:data] = station[:data].map { |set| [set[:date], set[:level]] }.to_h
     end
   end
 
-    private
+  private
 
-    def rom_to_int(rom)
-      roman_to_int = {  'I' => 1,
-                        'II' => 2,
-                        'III' => 3,
-                        'IV' => 4,
-                        'V' => 5,
-                        'VI' => 6 }
-      roman_to_int[rom]
+  def find_topo_by_address
+    ip = `curl http://ipecho.net/plain`
+    address = Geocoder.search(ip)
+    topo_addresses = Address.near("#{address[0].city}, #{address[0].country}", 100)
+    @topos = []
+    topo_addresses.each do |topo_address|
+      sql_query = "departure_id = #{topo_address.id} OR arrival_id = #{topo_address.id}"
+      topo = Topo.where(sql_query)
+      @topos << topo[0]
     end
+  end
+
+  def rom_to_int(rom)
+    roman_to_int = {  'I' => 1,
+                      'II' => 2,
+                      'III' => 3,
+                      'IV' => 4,
+                      'V' => 5,
+                      'VI' => 6 }
+    roman_to_int[rom]
+  end
 end
 
   # def water_data
