@@ -33,27 +33,13 @@ class ToposController < ApplicationController
 
     @favorite = Favorite.where(user_id: current_user.id, topo_id: @topo.id).exists?
 
-    @topo_sites_name = ApiHubeauSiteName.call(@topo.river.name)
-    @topo_sites_code = ApiHubeauCodeSite.call(@topo.river.name)
-    @topo_sites_info = ApiHubeauInfoSite.call(@topo.river.name)
-
-    topo_sites_levels = []
-    @topo_sites_info.each do |value|
-      data = ApiHubeauDataSite.call(value[:code])
-      topo_sites_levels << data
-    end
-    @topo_sites_levels = topo_sites_levels.flatten
-
     stats = StatsForRiver.call(@topo.river)
-
     @data = stats.each do |station|
       station[:data] = station[:data].map {|set| [set[:date], set[:level]]}.to_h
     end
-
   end
 
     private
-
 
   def find_topo_by_address
     ip = `curl http://ipecho.net/plain`
@@ -67,16 +53,15 @@ class ToposController < ApplicationController
     end
   end
 
-    def rom_to_int(rom)
-      roman_to_int = {  'I' => 1,
-                        'II' => 2,
-                        'III' => 3,
-                        'IV' => 4,
-                        'V' => 5,
-                        'VI' => 6 }
-      roman_to_int[rom]
-    end
-
+  def rom_to_int(rom)
+    roman_to_int = {  'I' => 1,
+                      'II' => 2,
+                      'III' => 3,
+                      'IV' => 4,
+                      'V' => 5,
+                      'VI' => 6 }
+    roman_to_int[rom]
+  end
 end
 
   # def water_data
