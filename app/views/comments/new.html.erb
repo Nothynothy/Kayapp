@@ -1,0 +1,8 @@
+<div class='container'>
+  <%= simple_form_for [@topo, @comment] do |f| %>
+    <%= f.input :alert_type, :collection => ['Arbre', 'Barage', 'Eboulement'], :include_blank => false %>
+    <%= f.input :severity, :collection => ['Praticable', 'Impraticable'], :include_blank => false %>
+    <%= f.input :description, as: :text %>
+    <%= f.button :submit %>
+  <% end %>
+</div>

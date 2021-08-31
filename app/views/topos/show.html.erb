@@ -24,7 +24,7 @@
       <i class="fas fa-chevron-down"></i>
     </div>
   </div>
-
+  <%= link_to 'Add a comment', new_topo_comment_path(@topo)%>
   <div id="water-info">
       <%= line_chart river_data_topo_path(@topo),
           id:"water-graph",

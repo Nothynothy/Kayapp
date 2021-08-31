@@ -13,11 +13,11 @@ class Topo < ApplicationRecord
       river: [ :name, :country, :region, :department ]
     },
     using: {
-      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+      tsearch: { prefix: true }
   }
 
   def has_severity_2_alert?
-    comments.where(category: "alert", severity: 2, active: true).any?
+    comments.where(category: "alert", severity: 'Impraticable', active: true).any?
   end
 
   def has_alert?
