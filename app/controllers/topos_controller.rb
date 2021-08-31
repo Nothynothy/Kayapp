@@ -5,7 +5,8 @@ class ToposController < ApplicationController
     if params[:query].present?
       @topos = Topo.search_by_topo_and_river(params[:query])
     else
-      @topos = Topo.all
+      find_topo_by_address
+      @topos = Topo.all if @topos.count.zero?
     end
   end
 
@@ -130,4 +131,15 @@ class ToposController < ApplicationController
     roman_to_int[rom]
   end
 
+  def find_topo_by_address
+    ip = `curl http://ipecho.net/plain`
+    address = Geocoder.search(ip)
+    topo_addresses = Address.near("#{address[0].city}, #{address[0].country}", 100)
+    @topos = []
+    topo_addresses.each do |topo_address|
+      sql_query = "departure_id = #{topo_address.id} OR arrival_id = #{topo_address.id}"
+      topo = Topo.where(sql_query)
+      @topos << topo[0]
+    end
+  end
 end
