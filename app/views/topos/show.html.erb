@@ -39,7 +39,7 @@
               <div class='alert-status'>
                 <h5>Danger toujours présent?</h5>
                 <div>
-                  <%= link_to 'oui', root_path, class: 'btn-red' %>
+                  <%= link_to 'oui', topo_path(@topo), class: 'btn-red' %>
                   <%= link_to 'non', topo_comment_path(@topo, comment), method: :patch ,class: 'btn-yellow' %>
                 </div>
               </div>
