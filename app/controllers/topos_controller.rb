@@ -31,7 +31,7 @@ class ToposController < ApplicationController
     comments = Comment.where(topo_id: @topo.id)
     @alerts_count = comments.where(category: "alert", active: true).count
 
-    @favorite = Favorite.where(user_id: current_user.id, topo_id: @topo.id).exists?
+    @favorite = Favorite.where(user: current_user, topo: @topo).exists?
   end
 
   def river_data
