@@ -1,7 +1,12 @@
   <div class="card-container">
     <% topos.each do |topo| %>
       <%= link_to topo_path(topo), class: 'card-product' do %>
-        <%= image_tag "https://images.unsplash.com/photo-1437482078695-73f5ca6c96e2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" %>
+      <% 
+        client_id = "_VHzHxfpY4G4UfEfQsg42fp3LdvNko_8IZPFDL9_O9I"
+        query = "kayak"
+        base_url = "https://api.unsplash.com/photos/random"
+      %>
+        <%= image_tag "#{base_url}/?client_id=#{client_id}&query=#{query}" %>
         <div class='card-infos'>
           <div class='infos-name'>
             <div class='naming-div'>
