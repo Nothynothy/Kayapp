@@ -4,19 +4,20 @@
 
 # ap StatsForRiver.call(river)
 
+ap not_found
 
 
 
 
-arr =       [{
-                 :date => "2021-08-31T07:00:00Z",
-                :level => 4356.0
-            },
-             {
-                 :date => "2021-08-32T07:00:00Z",
-                :level => 45.0
-             }
-            ]
+# arr =       [{
+#                  :date => "2021-08-31T07:00:00Z",
+#                 :level => 4356.0
+#             },
+#              {
+#                  :date => "2021-08-32T07:00:00Z",
+#                 :level => 45.0
+#              }
+#             ]
 
 
-ap arr.map {|set| [set[:date], set[:level]]}.to_h
+# ap arr.map {|set| [set[:date], set[:level]]}.to_h

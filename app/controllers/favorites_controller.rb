@@ -1,6 +1,6 @@
 class FavoritesController < ApplicationController
   def index
-    @favorites = Favorite.where(user_id: current_user.id) # => array d'instance de fav
+    @favorites = Favorite.where(user: current_user) # => array d'instance de fav
     if @favorites == []
       @presence = false
     else
