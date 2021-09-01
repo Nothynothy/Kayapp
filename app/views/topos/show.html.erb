@@ -55,7 +55,6 @@
       </div>
     </div>
   <% end %>
-  <%= link_to 'Signaler un danger', new_topo_comment_path(@topo), class: 'btn-alert'%>
 
   <div id="key-info">
     <div class='key-text'>
@@ -69,6 +68,8 @@
       <span><%= @arrival.name.capitalize %></span>
     </div>
   </div>
+
+  <%= link_to 'Signaler un danger', new_topo_comment_path(@topo), class: 'btn-alert'%>
 
   <div id="water-info">
         <%# <%= line_chart @data, %>
