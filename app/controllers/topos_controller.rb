@@ -13,12 +13,12 @@ class ToposController < ApplicationController
   def toggle_favorite
     topo = Topo.find(params[:id])
 
-    @fav = Favorite.find_by(user_id: current_user.id, topo_id: topo.id)
+    @fav = Favorite.find_by(user: current_user, topo: topo)
     if @fav
       @fav.destroy
       redirect_to topo_path(params[:id])
     else
-      @fav = Favorite.create(user_id: current_user.id, topo_id: topo.id)
+      @fav = Favorite.create(user: current_user, topo: topo)
       redirect_to favorites_path
     end
   end
@@ -28,21 +28,27 @@ class ToposController < ApplicationController
     @departure = Address.find(@topo.departure_id)
     @arrival = Address.find(@topo.arrival_id)
 
-    comments = Comment.where(topo_id: @topo.id)
-    @alerts_count = comments.where(category: "alert", active: true).count
-
-    @favorite = Favorite.where(user_id: current_user.id, topo_id: @topo.id).exists?
-
-    stats = StatsForRiver.call(@topo.river)
-    @data = stats.each do |station|
-      station[:data] = station[:data].map {|set| [set[:date], set[:level]]}.to_h
-    end
+    @comments = Comment.where(topo: @topo).sort_by(&:updated_at).reverse
+    @alerts_count = @comments.select { |comment| comment.category == 'alert' && comment.active == true }.count
+    @favorite = Favorite.where(user: current_user, topo: @topo).exists?
   end
 
-    private
+  def river_data
+    @topo = Topo.find(params[:id])
+
+    stats = StatsForRiver.call(@topo.river)
+
+    data = stats.each do |station|
+      station[:data] = station[:data].map { |set| [set[:date], set[:level]] }.to_h
+    end
+    render json: data.to_json
+  end
+
+  private
 
   def find_topo_by_address
-    ip = `curl http://ipecho.net/plain`
+    ip = request.remote_ip
+    ip = `curl http://ipecho.net/plain` if ip == "::1"
     address = Geocoder.search(ip)
     topo_addresses = Address.near("#{address[0].city}, #{address[0].country}", 100)
     @topos = []
