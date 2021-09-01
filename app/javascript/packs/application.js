@@ -31,8 +31,8 @@ import "chartkick/chart.js";
 
 import { initMapbox } from '../plugins/init_mapbox';
 import { closeLegend } from '../topos/legend';
+import { toggleAlert } from '../topos/toggleAlert';
 import { toggleFav } from '../favorites/toggleFav';
-
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -40,4 +40,5 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
   closeLegend();
   toggleFav();
+  toggleAlert();
 });

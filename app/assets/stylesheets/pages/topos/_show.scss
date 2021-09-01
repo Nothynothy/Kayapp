@@ -1,9 +1,8 @@
 #topo-header{
   justify-content: space-between;
   color: $white;
-  font-size: 36px;
+  font-size: 25px;
 }
-
 
 #favorite-icon {
   color: white;
@@ -14,23 +13,102 @@
 }
 
 .topo{
-  margin-top: 80px;
+  margin-top: 130px;
 }
 
-#alert-banner {
+.alert-banner {
+  position: absolute;
+  top: 70px;
+  left: 15px;
+  right: 15px;
+  z-index: 1000;
+  background-color: white;
   height: 50px;
+  transition-property: height;
+  transition-duration: 200ms;
+  border: 1px solid $red;
+  border-radius: 25px;
+  padding: 0px 25px;
+  #alert-title {
+    margin-top: 10px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.alert-content {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility, opacity 0ms linear;
+  transition-delay: 0ms;
+  height: 445px;
+  overflow-y: scroll;
+  margin-top: 20px;
+  .alert-type {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  h4 {
+    font-size: 18px;
+    color: $blue;
+    margin: 0px;
+    margin-right: 10px;
+  }
+  h5 {
+    font-size: 14px;
+    margin: 0px;
+  }
+  span {
+    font-size: 18px;
+  }
+  p {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 5px;
+  }
+  .alert-message {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+}
 
-  border-style: solid;
-  border-color: $red;
-  border-radius: 30px;
-  border-width: 1px;
+.alert-display {
+  height: calc(100% - 140px);
+  .fa-chevron-down {
+    transform: rotate(180deg);
+    transition: transform 100ms;
+  }
+  .alert-content {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility, opacity 100ms linear;
+    transition-delay: 200ms;
+  }
+}
 
-  margin: 10px auto;
-  padding-left: 20px;
-  font-size: 24px;
-
+.alert-status {
+  margin-top: 10px;
   display: flex;
-  place-items: center;
+  align-items: center;
+  justify-content: space-between;
+  div a {
+    padding: 4px 6px;
+    color: black;
+  }
+}
+
+.btn-red {
+  border-radius: 13.5px;
+  border: 1px solid $red;
+}
+
+.btn-yellow {
+  border-radius: 13.5px;
+  border: 1px solid $yellow;
 }
 
 #water-info{
@@ -77,25 +155,30 @@
 }
 
 #key-info{
-  height: 110px;
-
-  border-style: solid;
-  border-color: $blue;
-  border-radius: 10px;
-  border-width: 1px;
-
-  margin: 10px auto;
-  display: flex;
-  justify-content: center;
-  place-items: center;
-
-  font-size: 12px;
+  background-color: white;
+  border: 1px solid $blue;
+  border-radius: 8px;
+  padding: 10px;
+  h4 {
+    font-size: 18px;
+    color: $blue;
+    margin: 0px;
+  }
+  span {
+    font-size: 18px;
+  }
 }
 
-#category-row{
-  color: $blue;
-  text-align: right;
+.key-text {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 20px;
+  row-gap: 3px;
+  h4 {
+    justify-self: end;
+  }
 }
+
 #content-row{
   margin-right: 15px;
 }
