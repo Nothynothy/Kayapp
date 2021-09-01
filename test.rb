@@ -1,23 +1,24 @@
-# ap "je sui sla"
+# CCC = []
 
-# river = Topo.find(5).river
+# def fill_random_image
+#   url = URI("https://api.unsplash.com/search/photos/?client_id=_VHzHxfpY4G4UfEfQsg42fp3LdvNko_8IZPFDL9_O9I&query=kayak&per_page=1000")
 
-# ap StatsForRiver.call(river)
+#   https = Net::HTTP.new(url.host, url.port)
+#   https.use_ssl = true
 
-ap not_found
+#   request = Net::HTTP::Get.new(url)
 
-
-
-
-# arr =       [{
-#                  :date => "2021-08-31T07:00:00Z",
-#                 :level => 4356.0
-#             },
-#              {
-#                  :date => "2021-08-32T07:00:00Z",
-#                 :level => 45.0
-#              }
-#             ]
+#   response = https.request(request)
+#   ap JSON.parse(response.read_body)
+#   data = JSON.parse(response.read_body)["results"]
+#   data.each do |image|
+#     CCC << image["urls"]["small"]
+#   end
+# end
 
 
-# ap arr.map {|set| [set[:date], set[:level]]}.to_h
+# fill_random_image
+
+# Topo.all.each do |topo|
+#   topo.update(image_url: CCC.sample)
+# end

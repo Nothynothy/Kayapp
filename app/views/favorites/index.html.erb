@@ -1,15 +1,31 @@
   <div class="container">
-    <%# LIST TOPOS %>
-    <% if @presence%> <%# ajouter le tri par rivière, avec @rivers_fav %>
-      <%= render "shared/topos-cards", topos: @topos_fav %>
+
+    <div class='fav-title'>
+      <h2>Vos favoris (<%= @favorites.count == 0 ? 0 : @favorites.count %>)</h2>
+    </div>
+
+    <hr>
+
+    <% if @favorites.any? %>
+      <div class='fav-river-title'>
+        <% current_user.topos.group_by {|t| t.river.name}.sort.to_h.each do |river_name, topos| %>
+          <h2><%= river_name.capitalize %></h2>
+          <%= render "shared/topos-cards", topos: topos.sort_by(&:name) %>
+        <% end %>
     <% else %>
-    <div id="fav-false">
-      <p id="fav-message"> Pas encore de topos préféré 💔 </p>
+      <div id="fav-false">
+        <p id="fav-message"> Pas encore de topos préféré 💔 </p>
         <div id="fav-gif">
           <iframe src="https://giphy.com/embed/3o6MbbcFfp6DGDUiPK" width="100%" height="100%" style="position:absolute"
-                  frameBorder="0" class="giphy-embed" allowFullScreen>
+                      frameBorder="0" class="giphy-embed" allowFullScreen>
           </iframe>
         </div>
-    </div>
+      </div>
     <% end %>
+    </div>
   </div>
+
+
+
+<%# && @topos_fav_river_name.include?(river.name) %>
+<%# .respond_to?(river.name) %>

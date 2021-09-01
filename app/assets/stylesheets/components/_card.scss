@@ -14,11 +14,8 @@
 }
 
 .card-product img {
-  height: 100%;
-  width: 120px;
-  object-fit: cover;
+  width: 110px;
 }
-
 
 .card-infos {
   width: 100%;
@@ -60,6 +57,7 @@
 
 .alert-icons {
   display: flex;
+  align-items: center;
 }
 
 

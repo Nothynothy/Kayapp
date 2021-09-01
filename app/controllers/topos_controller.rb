@@ -13,14 +13,13 @@ class ToposController < ApplicationController
   def toggle_favorite
     topo = Topo.find(params[:id])
 
-    @fav = Favorite.find_by(user_id: current_user.id, topo_id: topo.id)
+    @fav = Favorite.find_by(user: current_user, topo: topo)
     if @fav
       @fav.destroy
-      redirect_to topo_path(params[:id])
     else
-      @fav = Favorite.create(user_id: current_user.id, topo_id: topo.id)
-      redirect_to favorites_path
+      @fav = Favorite.create(user: current_user, topo: topo)
     end
+    redirect_to topo_path(params[:id])
   end
 
   def show
@@ -30,7 +29,7 @@ class ToposController < ApplicationController
 
     @comments = Comment.where(topo: @topo).sort_by(&:updated_at).reverse
     @alerts_count = @comments.select { |comment| comment.category == 'alert' && comment.active == true }.count
-    @favorite = Favorite.where(user_id: current_user.id, topo_id: @topo.id).exists?
+    @favorite = Favorite.where(user: current_user, topo: @topo).exists?
   end
 
   def river_data
