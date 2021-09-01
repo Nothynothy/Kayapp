@@ -1,3 +1,23 @@
+require "uri"
+require "net/http"
+
+RANDOM_IMAGES = []
+
+def fill_random_image
+  url = URI("https://api.unsplash.com/search/photos/?client_id=_VHzHxfpY4G4UfEfQsg42fp3LdvNko_8IZPFDL9_O9I&query=kayak&per_page=1000")
+
+  https = Net::HTTP.new(url.host, url.port)
+  https.use_ssl = true
+
+  request = Net::HTTP::Get.new(url)
+
+  response = https.request(request)
+  data = JSON.parse(response.read_body)["results"]
+  data.each do |image|
+    RANDOM_IMAGES << image["urls"]["small"]
+  end
+end
+
 def start
   print 'Destroy all '
   print 'Level'.green
@@ -6,6 +26,8 @@ def start
   print ' and '
   print 'River'.blue
   puts ' ...'
+
+  fill_random_image
 
   Level.destroy_all
   Topo.destroy_all
@@ -71,6 +93,7 @@ def save_db(rivers) # rubocop:disable Metrics/MethodLength
       topo.river = river
       topo.departure = departure
       topo.arrival = arrival
+      topo.image_url = RANDOM_IMAGES.sample
       topo.save!
       levels = info[1][/^(\w*)-(\w*)|^(\w*) (\w*)|^(\w*)/].strip.split(/[-\s]/)
       levels.each do |level|

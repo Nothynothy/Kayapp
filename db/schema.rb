@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_25_124155) do
+ActiveRecord::Schema.define(version: 2021_09_01_121907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2021_08_25_124155) do
     t.bigint "river_id"
     t.bigint "departure_id"
     t.bigint "arrival_id"
+    t.string "image_url"
     t.index ["arrival_id"], name: "index_topos_on_arrival_id"
     t.index ["departure_id"], name: "index_topos_on_departure_id"
     t.index ["river_id"], name: "index_topos_on_river_id"

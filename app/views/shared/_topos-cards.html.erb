@@ -1,7 +1,7 @@
   <div class="card-container">
     <% topos.each do |topo| %>
       <%= link_to topo_path(topo), class: 'card-product' do %>
-        <%= image_tag "https://images.unsplash.com/photo-1628666222763-e2fbc422d42f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyNTc1MzJ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MzA0MzIyODQ&ixlib=rb-1.2.1&q=80&w=1080" %>
+        <%= image_tag topo.image_url %>
         <div class='card-infos'>
           <div class='infos-name'>
             <div class='naming-div'>
