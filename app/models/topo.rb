@@ -2,9 +2,9 @@ class Topo < ApplicationRecord
   belongs_to :river
   belongs_to :departure, class_name: "Address"
   belongs_to :arrival, class_name: "Address"
-  has_many :favorites
-  has_many :comments
-  has_many :levels
+  has_many :favorites, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :levels, dependent: :destroy
 
   include PgSearch::Model
   pg_search_scope :search_by_topo_and_river,
