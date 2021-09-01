@@ -16,11 +16,10 @@ class ToposController < ApplicationController
     @fav = Favorite.find_by(user: current_user, topo: topo)
     if @fav
       @fav.destroy
-      redirect_to topo_path(params[:id])
     else
       @fav = Favorite.create(user: current_user, topo: topo)
-      redirect_to favorites_path
     end
+    redirect_to topo_path(params[:id])
   end
 
   def show
