@@ -9,7 +9,7 @@ const toggleAlert = () => {
   graph.style.display = "flex";
   if (chevron !== null){
 
-    topoCard.style.margin = "130px 0px 0px 0px";
+    topoCard.style.margin = "130px 0px 70px 0px";
 
     chevron.addEventListener('click', () => {
       alertBanner.classList.toggle("alert-display");
@@ -20,7 +20,7 @@ const toggleAlert = () => {
       }
     })
   } else {
-    topoCard.style.margin= "80px 0px 0px 0px";
+    topoCard.style.margin= "80px 0px 70px 0px";
   }
 }
 
