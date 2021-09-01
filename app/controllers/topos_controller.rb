@@ -28,9 +28,8 @@ class ToposController < ApplicationController
     @departure = Address.find(@topo.departure_id)
     @arrival = Address.find(@topo.arrival_id)
 
-    comments = Comment.where(topo_id: @topo.id)
-    @alerts_count = comments.where(category: "alert", active: true).count
-
+    @comments = Comment.where(topo: @topo).sort_by(&:updated_at).reverse
+    @alerts_count = @comments.select { |comment| comment.category == 'alert' && comment.active == true }.count
     @favorite = Favorite.where(user_id: current_user.id, topo_id: @topo.id).exists?
   end
 
@@ -38,6 +37,7 @@ class ToposController < ApplicationController
     @topo = Topo.find(params[:id])
 
     stats = StatsForRiver.call(@topo.river)
+
     data = stats.each do |station|
       station[:data] = station[:data].map { |set| [set[:date], set[:level]] }.to_h
     end
@@ -47,12 +47,8 @@ class ToposController < ApplicationController
   private
 
   def find_topo_by_address
-    ap "DEBUG PROD"
-    ap request.remote_ip
-    ap "---------------------"
-    ap request
-
-    ip = `curl http://ipecho.net/plain`
+    ip = request.remote_ip
+    ip = `curl http://ipecho.net/plain` if ip == "::1"
     address = Geocoder.search(ip)
     topo_addresses = Address.near("#{address[0].city}, #{address[0].country}", 100)
     @topos = []

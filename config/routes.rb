@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'topos#index'
   resources :topos, only: [:index, :show] do
-    resources :comments, only: [:create, :update]
+    resources :comments, only: [:new, :create, :update]
     post :toggle_favorite, on: :member
     get :river_data, on: :member
   end

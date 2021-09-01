@@ -1,5 +1,3 @@
-<script src="../../javascript/plugins/graph"></script>
-
 <div class="navbar fixed-top navbar-expand-sm navbar-light navbar-lewagon" id="topo-header">
   <div class="topo-name"> <%# FYI Class not used %>
     <%= "#{@topo.river.name.capitalize} - #{@topo.name.capitalize}"  %>
@@ -15,38 +13,54 @@
 </div>
 
 <div class="container topo">
-  <div id="alert-banner">
-    <%= "⚠️  #{"Alerte".pluralize(@alerts_count)} (#{@alerts_count})"%> <%# TODO: warning à rendre dynamique %>
-  </div>
-
-  <div id="key-info">
-    <div class="row-3" id="category-row">
-      <div class="col-sm">
-        Difficulté
+  <% if @topo.has_alert? %>
+    <div class="alert-banner">
+      <div id='alert-title'>
+        <div>
+          <i class="fas fa-exclamation-triangle"></i>
+          <span><%= "#{"Alerte".pluralize(@alerts_count)} (#{@alerts_count})"%></span>
+        </div>
+        <i class="fas fa-chevron-down"></i>
       </div>
-      <div class="col-sm">
-        Longueur
-      </div>
-      <div class="col-sm">
-        Départ
-      </div>
-      <div class="col-sm">
-        Arrivée
+      <div class="alert-content">
+        <% @comments.each do |comment| %>
+          <% if comment.active %>
+            <div class='alert-message'>
+              <div class="alert-type">
+                <h4>Type</h4>
+                <span><%= comment.alert_type %></span>
+              </div>
+              <div class="alert-type">
+                <h4>Praticable</h4>
+                <span><%= comment.severity == 'Praticable' ? 'Oui' : 'Non' %></span>
+              </div>
+              <p><%= comment.description %></p>
+              <h5>Posté le <%= comment.updated_at.strftime("%d") %>/<%= comment.updated_at.strftime("%m") %>/<%= comment.updated_at.year %> à <%= comment.updated_at.hour %>h<%= comment.updated_at.min %></h5>
+              <div class='alert-status'>
+                <h5>Danger toujours présent?</h5>
+                <div>
+                  <%= link_to 'oui', root_path, class: 'btn-red' %>
+                  <%= link_to 'non', topo_comment_path(@topo, comment), method: :patch ,class: 'btn-yellow' %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
-    <div class="row-6" id="content-row">
-      <div class="col-sm">
-        <%= @topo.find_level.count > 1 ? "#{@topo.find_level[0]} - #{@topo.find_level[1]}" : "#{@topo.find_level[0]}" %>
-      </div>
-      <div class="col-sm">
-        <%= "#{@topo.length}" %>
-      </div>
-      <div class="col-sm">
-        <%= @departure.name %>
-      </div>
-      <div class="col-sm">
-        <%= @arrival.name %>
-      </div>
+  <% end %>
+  <%= link_to 'Add a comment', new_topo_comment_path(@topo)%>
+
+  <div id="key-info">
+    <div class='key-text'>
+      <h4>Difficulté</h4>
+      <span><%= @topo.find_level.count > 1 ? "#{@topo.find_level[0]} - #{@topo.find_level[1]}" : "#{@topo.find_level[0]}" %></span>
+      <h4>Longueur</h4>
+      <span><%= "#{@topo.length}" %></span>
+      <h4>Départ</h4>
+      <span><%= @departure.name.capitalize %></span>
+      <h4>Arrivée</h4>
+      <span><%= @arrival.name.capitalize %></span>
     </div>
   </div>
 
@@ -56,7 +70,7 @@
           id:"water-graph",
           width: "100%", height: "100%",
           ytitle: "Vol. d'eau (m3)", xtitle: "Date",
-          style: "display:"
+          style: "display:",
           legend: true,
           points: false,
           loading: "Chargement en cours... 🚣‍♀️ 🎣 ",
