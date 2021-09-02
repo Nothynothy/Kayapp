@@ -5,8 +5,7 @@
   display: flex;
   border-radius: 8px;
   border-color: $blue;
-  border: solid;
-  border-width: 1px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
   text-decoration: none;
   &:hover {
     text-decoration: none;
@@ -24,8 +23,8 @@
 }
 
 .infos-name {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .naming-div {
@@ -87,7 +86,23 @@
   color: $green;
 }
 
+.topo-level-content {
+  margin-bottom: 5px;
+}
+
 .topo-level {
   color: black;
   font-size: 18px;
+  padding-left: 2px;
+  margin-top: 3px;
+  padding-right: 2px;
+  border-radius: 2px;
+  border-color: $blue;
+  box-shadow: 0 0 4px rgba(0,0,0,0.2);;
+  background-color: $white;
+}
+
+
+.topo-title {
+  color: $blue;
 }
