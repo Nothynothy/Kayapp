@@ -7,9 +7,11 @@ const closeLegend = () => {
     background.classList.toggle("info-active")
   });
 
+  if (background){
   background.addEventListener("click", () => {
     background.classList.toggle("info-active")
   })
+  }
 };
 
 export { closeLegend };

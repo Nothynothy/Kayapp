@@ -6,7 +6,10 @@ const toggleAlert = () => {
 
   console.log(topoCard);
 
+  if (graph) {
   graph.style.display = "flex";
+  };
+
   if (chevron !== null){
 
     topoCard.style.margin = "130px 0px 70px 0px";
