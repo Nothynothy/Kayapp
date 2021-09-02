@@ -16,6 +16,10 @@ class Topo < ApplicationRecord
       tsearch: { prefix: true }
   }
 
+  scope :levels, -> (levels) do
+    joins(:levels).where(levels: {difficulty: levels})
+  end
+
   def has_severity_2_alert?
     comments.where(category: "alert", severity: 'Impraticable', active: true).any?
   end

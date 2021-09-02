@@ -22,3 +22,10 @@
 # Topo.all.each do |topo|
 #   topo.update(image_url: CCC.sample)
 # end
+
+
+
+
+topos = Topo.levels(["1", "4"])
+
+ap topos.count

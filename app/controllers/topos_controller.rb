@@ -4,9 +4,14 @@ class ToposController < ApplicationController
   def index
     if params[:query].present?
       @topos = Topo.search_by_topo_and_river(params[:query])
+
     else
       find_topo_by_address
       @topos = Topo.all if @topos.count.zero?
+    end
+
+    if params[:levels].present?
+      @topos = @topos.levels(params[:levels])
     end
   end
 
@@ -56,16 +61,6 @@ class ToposController < ApplicationController
       topo = Topo.where(sql_query)
       @topos << topo[0]
     end
-  end
-
-  def rom_to_int(rom)
-    roman_to_int = {  'I' => 1,
-                      'II' => 2,
-                      'III' => 3,
-                      'IV' => 4,
-                      'V' => 5,
-                      'VI' => 6 }
-    roman_to_int[rom]
   end
 end
 

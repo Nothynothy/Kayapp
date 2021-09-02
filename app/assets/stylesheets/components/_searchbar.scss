@@ -87,3 +87,23 @@
   top: 400px;
   text-align: center;
 }
+
+.search-form-control {
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  input[type="checkbox"] + label {
+    font-size: 0.8em;
+    color: white;
+    display: inline-block;
+    padding: 2px 8px;
+    background-color: grey;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 400ms all ease;
+  }
+  input[type="checkbox"]:checked + label {
+    background-color: orange;
+  }
+}
