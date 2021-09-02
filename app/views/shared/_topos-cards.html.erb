@@ -6,7 +6,9 @@
           <div class='infos-name'>
             <div class='naming-div'>
               <h4><%= "#{topo.river.name.capitalize} #{topo.name.capitalize}" %></h4>
+              <div class='topo-level-cont'>
               <h4 class='topo-level'><%= topo.find_level.count > 1 ? "#{topo.find_level[0]} - #{topo.find_level[1]}" : "#{topo.find_level[0]}" %></h4>
+              </div>
             </div>
           </div>
           <div class='country-div'>
