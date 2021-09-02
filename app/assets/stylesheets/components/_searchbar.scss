@@ -18,7 +18,7 @@
   height: 3rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
   border: 1px solid #E7E7E7;
-  border-radius: 25px;
+  border-radius: 8px;
   padding-left: 25px;
 }
 
@@ -65,7 +65,7 @@
     padding: 4px 8px;
     margin: 0;
     background-color: #ff9e00;
-    border-radius: 13.5px;
+    border-radius: 5px;
     cursor: pointer;
     transition: 100ms all ease;
     text-align: center;
@@ -89,6 +89,13 @@
   border: none;
   background-color: $blue;
   color: white;
+  border-radius: 5px;
+}
+
+#filter {
+  padding: 10px;
+  background-color: white;
   border-radius: 8px;
   margin-bottom: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, .2);
 }
