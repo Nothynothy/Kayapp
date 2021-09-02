@@ -9,7 +9,7 @@
     <% if @favorites.any? %>
       <div class='fav-river-title'>
         <% current_user.topos.group_by {|t| t.river.name}.sort.to_h.each do |river_name, topos| %>
-          <h2><%= river_name.capitalize %></h2>
+          <h2 class='river-name'><%= river_name.capitalize %></h2>
           <%= render "shared/topos-cards", topos: topos.sort_by(&:name) %>
         <% end %>
     <% else %>
@@ -24,8 +24,3 @@
     <% end %>
     </div>
   </div>
-
-
-
-<%# && @topos_fav_river_name.include?(river.name) %>
-<%# .respond_to?(river.name) %>
