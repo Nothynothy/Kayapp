@@ -40,5 +40,5 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
   closeLegend();
   toggleFav();
-  // toggleAlert();
+  toggleAlert();
 });
