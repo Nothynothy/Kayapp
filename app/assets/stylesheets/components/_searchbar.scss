@@ -5,6 +5,7 @@
 .search-form-control {
   position: relative;
   padding-top: 15px;
+  margin-bottom: 8px;
 }
 
 .search-form-control .btn {
@@ -88,7 +89,7 @@
   text-align: center;
 }
 
-.search-form-control {
+.search {
   input[type="checkbox"] {
     display: none;
   }
@@ -96,14 +97,23 @@
   input[type="checkbox"] + label {
     font-size: 0.8em;
     color: white;
-    display: inline-block;
-    padding: 2px 8px;
+    padding: 4px 8px;
+    margin: 0;
     background-color: grey;
-    border-radius: 4px;
+    border-radius: 13.5px;
     cursor: pointer;
     transition: 400ms all ease;
+    text-align: center;
   }
   input[type="checkbox"]:checked + label {
     background-color: orange;
   }
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 10px;
+  column-gap: 15px;
+  margin-bottom: 15px;
 }
