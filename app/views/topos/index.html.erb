@@ -41,21 +41,24 @@
   <%# SEARCH-BAR %>
   <div class='search'>
     <%= simple_form_for root_path, method: :get do |f| %>
-      <div class="search-form-control form-group">
-        <%= text_field_tag :query, params[:query], value: params[:query],class: "form-control string required", placeholder: "Trouver des topos" %>
-
-
-
+      <div>
+        <div class="search-form-control">
+          <%= text_field_tag :query, params[:query], value: params[:query],class: "form-control string required", placeholder: "Trouver des topos" %>
+          <button name="button" type="submit" class="btn btn-flat">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+        <div class="filter-grid">
           <% (1..6).each do |level| %>
                 <%= check_box_tag 'levels[]', level, params[:levels] && params[:levels].include?(level.to_s), {id: "level#{level}"} -%>
                 <label for="<%= "level#{level}" %>">
                   Niveau <%= int_to_roman(level) %>
                 </label>
           <% end %>
-
-        <button name="button" type="submit" class="btn btn-flat">
-          <i class="fas fa-search"></i>
-        </button>
+        </div>
+        <button name="button" type="submit" class="btn-filter">
+          <span>Filtrer</span>
+       </button>
       </div>
     <% end %>
   </div>
