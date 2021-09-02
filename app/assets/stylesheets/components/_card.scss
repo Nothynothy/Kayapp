@@ -42,10 +42,15 @@
   align-items: center;
   gap: 5px;
   color: rgba(0,0,0,0.4);
+  border-radius: 5%;
   p {
     font-size: 14px;
     margin: 0;
   }
+}
+.flag{
+  border-radius: 2px;
+  overflow: hidden;
 }
 
 .alert-div {

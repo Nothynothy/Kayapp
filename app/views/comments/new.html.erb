@@ -3,6 +3,6 @@
     <%= f.input :alert_type, :collection => ['Arbre', 'Barage', 'Eboulement'], :include_blank => false %>
     <%= f.input :severity, :collection => ['Praticable', 'Impraticable'], :include_blank => false %>
     <%= f.input :description, as: :text %>
-    <%= f.button :submit %>
+    <%= f.button :submit, value:"Ajouter le danger" %>
   <% end %>
 </div>
