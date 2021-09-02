@@ -1,8 +1,14 @@
+.navbar{
+
+}
 .navbar-lewagon {
-  background: $blue;
+  background: white;
   display: flex;
   justify-content: space-between;
   height: 60px;
+  box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.10);
+  padding-right: 30px;
+  padding-left: 30px;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -17,7 +23,7 @@
 }
 
 .nav-link {
-  color: white;
+  color: $blue;
   padding: 0px;
   &:hover {
     color: white;
