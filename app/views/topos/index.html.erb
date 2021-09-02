@@ -4,7 +4,6 @@
   <div class='search'>
     <%= simple_form_for root_path, method: :get do |f| %>
       <div>
-
         <div class="search-form-control">
           <%= text_field_tag :query, params[:query], value: params[:query],class: "form-control string required", placeholder: "Trouver des topos" %>
           <button name="button" type="submit" class="btn btn-flat">
@@ -19,6 +18,9 @@
                 </label>
           <% end %>
         </div>
+        <button name="button" type="submit" class="btn-filter">
+          <span>Filtrer</span>
+        </button>
       </div>
     <% end %>
     <div class='search-legend'>
