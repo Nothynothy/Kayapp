@@ -5,7 +5,7 @@
   display: flex;
   border-radius: 8px;
   border-color: $blue;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 12px rgba(0,0,0,0.2);
   text-decoration: none;
   &:hover {
     text-decoration: none;
@@ -100,9 +100,4 @@
   border-color: $blue;
   box-shadow: 0 0 4px rgba(0,0,0,0.2);;
   background-color: $white;
-}
-
-
-.topo-title {
-  color: $blue;
 }
