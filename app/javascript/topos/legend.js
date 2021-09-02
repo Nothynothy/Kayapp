@@ -1,17 +1,15 @@
 const closeLegend = () => {
-  const closeBtn = document.querySelector('.cross');
-  const divLegend = document.querySelector('.search-legend');
-  const legendStatus = localStorage.getItem('legendAlert');
+  const button = document.querySelector('.info-btn');
+  const background = document.querySelector('.info-bg');
+  // const cross = document.querySelector('.cross');
 
-  if (closeBtn !== null){
-    if (legendStatus == 'hide'){ divLegend.style.display = 'none' };
-  }
-  if (closeBtn !== null){
-    closeBtn.addEventListener('click', () => {
-      divLegend.style.display = 'none';
-      localStorage.setItem('legendAlert', 'hide');
-    })
-  }
-}
+  button.addEventListener("click", () => {
+    background.classList.toggle("info-active")
+  });
+
+  background.addEventListener("click", () => {
+    background.classList.toggle("info-active")
+  })
+};
 
 export { closeLegend };

@@ -1,26 +1,7 @@
-<div class='container'>
+  <%# INFO-POP-UP -->  TO RENDER %>
 
-  <%# SEARCH-BAR %>
-  <div class='search'>
-    <%= simple_form_for root_path, method: :get do |f| %>
-      <div class="search-form-control form-group">
-        <%= text_field_tag :query, params[:query], value: params[:query],class: "form-control string required", placeholder: "Trouver des topos" %>
-
-
-
-          <% (1..6).each do |level| %>
-                <%= check_box_tag 'levels[]', level, params[:levels] && params[:levels].include?(level.to_s), {id: "level#{level}"} -%>
-                <label for="<%= "level#{level}" %>">
-                  Niveau <%= int_to_roman(level) %>
-                </label>
-          <% end %>
-
-        <button name="button" type="submit" class="btn btn-flat">
-          <i class="fas fa-search"></i>
-        </button>
-      </div>
-    <% end %>
-    <div class='search-legend'>
+  <div class="info-bg">
+    <div class='info-legend'>
       <h4>Niveau d'eau:</h4>
       <div class='legend'>
         <i class="fas fa-check safe"></i>
@@ -50,16 +31,46 @@
           Vous pouvez consulter le détail de l'alerte dans le topo.
         </p>
       </div>
-      <i class="fas fa-times cross"></i>
+        <i class="fas fa-times cross"></i>
     </div>
+  </div>
+
+<div class='container'>
+
+  <%# SEARCH-BAR %>
+  <div class='search'>
+    <%= simple_form_for root_path, method: :get do |f| %>
+      <div class="search-form-control form-group">
+        <%= text_field_tag :query, params[:query], value: params[:query],class: "form-control string required", placeholder: "Trouver des topos" %>
+
+
+
+          <% (1..6).each do |level| %>
+                <%= check_box_tag 'levels[]', level, params[:levels] && params[:levels].include?(level.to_s), {id: "level#{level}"} -%>
+                <label for="<%= "level#{level}" %>">
+                  Niveau <%= int_to_roman(level) %>
+                </label>
+          <% end %>
+
+        <button name="button" type="submit" class="btn btn-flat">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    <% end %>
+  </div>
+
+
+  <%# SEARCH-RESULT %>
     <% if @topos.count == 0 %>
       <h4 id='search-message'>Désolé nous ne trouvons aucun topo pour toi 🤦🏻‍♂️</h4>
     <% elsif params[:query] == nil %>
-      <h4 class='around'><%= @topos.count <= 1 ? 'Topo à proximité' : 'Topos à proximité' %> (<%= @topos.count %>)</h4>
+      <h4 class='around'>
+        <%= @topos.count <= 1 ? 'Topo à proximité' : 'Topos à proximité' %> (<%= @topos.count %>)
+        <button class="info-btn"> i </button>
+      </h4>
     <% else %>
       <h4 class='around'><%= @topos.count <= 1 ? 'Topo' : 'Topos' %> (<%= @topos.count %>)</h4>
     <% end %>
-  </div>
 
   <%# LIST TOPOS %>
   <%= render 'shared/topos-cards', topos: @topos %>
