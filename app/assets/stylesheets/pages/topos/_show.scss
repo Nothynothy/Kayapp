@@ -1,30 +1,32 @@
 #topo-header{
   justify-content: space-between;
-  color: $white;
+  color: $blue;
   font-size: 25px;
 }
 
 #favorite-icon {
-  color: white;
+  color: $blue;
 
   &.fav-active{
-    fill: white;
+    fill: $blue;
   }
 }
 
 .alert-banner {
   position: absolute;
   top: 70px;
-  left: 15px;
-  right: 15px;
+  left: 30px;
+  right: 30px;
   z-index: 1000;
   background-color: white;
   height: 50px;
   transition-property: height;
   transition-duration: 200ms;
-  border: 1px solid $red;
-  border-radius: 25px;
+  border: 1.5px solid $orange;
+  border-radius: 8px;
   padding: 0px 25px;
+  box-sizing: border-box;
+
   #alert-title {
     margin-top: 10px;
     font-size: 20px;
@@ -73,7 +75,7 @@
 }
 
 .btn-alert {
-  background-color: $red;
+  background-color: $orange;
   color: white;
   padding: 5px 8px;
   border-radius: 5px;
@@ -124,8 +126,8 @@
 #water-info{
   height: 460px;
 
-  border-style: solid;
-  border-color: $black;
+  // border-style: solid;
+  // border-color: $black;
   border-radius: 10px;
   border-width: 1px;
   background-color: white;
@@ -133,6 +135,7 @@
   place-items: center;
 
   position: relative;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
 }
 #water-graph{
   font-size: 24px;
@@ -164,7 +167,8 @@
 
 #key-info{
   background-color: white;
-  border: 1px solid $blue;
+  // border: 1px solid $blue;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   padding: 10px;
   h4 {

@@ -1,3 +1,7 @@
+.btn{
+  border: solid, $blue;
+}
+
 .around{
   display: flex;
   align-items: center;
@@ -6,12 +10,14 @@
 
 
 .info-btn{
-  height: 2rem;
-  width: 2rem;
+  height: 1.75rem;
+  width: 1.75rem;
   border-radius: 50%;
   border: none;
   background: $orange;
-  color: whitesmoke;
+  color:whitesmoke;
+  font-size: 20px;
+  font-family: 'Bodoni Moda', serif;
 
 }
 

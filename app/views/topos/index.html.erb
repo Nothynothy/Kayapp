@@ -75,7 +75,10 @@
         <button class="info-btn"> i </button>
       </h4>
     <% else %>
-      <h4 class='around'><%= @topos.count <= 1 ? 'Topo' : 'Topos' %> (<%= @topos.count %>)</h4>
+      <h4 class='around'>
+        <%= @topos.count <= 1 ? 'Topo' : 'Topos' %> (<%= @topos.count %>)
+        <button class="info-btn"> i </button>
+      </h4>
     <% end %>
 
   <%# LIST TOPOS %>
