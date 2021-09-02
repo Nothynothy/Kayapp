@@ -19,6 +19,9 @@
 .nav-link {
   color: white;
   padding: 0px;
+  &:hover {
+    color: white;
+  }
 }
 
 .disable {
