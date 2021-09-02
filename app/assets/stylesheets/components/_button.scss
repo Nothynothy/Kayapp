@@ -1,0 +1,65 @@
+.around{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.info-btn{
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  border: none;
+  background: $orange;
+  color: whitesmoke;
+
+}
+
+.info-bg{
+  display: none;
+  position: absolute;
+  padding: 2rem;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.452);
+  z-index: 100;
+}
+
+.info-legend {
+  position: relative;
+  margin: 3rem auto;
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid $blue;
+  height: max-content;
+
+  h4 {
+    font-size: 18px;
+    margin: 0px;
+    margin-bottom: 8px;
+  }
+  .legend {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    margin-bottom: 5px;
+  }
+  .legend i {
+    margin: 0;
+    justify-self: center;
+    font-size: 14px;
+  }
+  .legend h4 {
+    margin: 0px;
+    font-size: 14px;
+  }
+  .cross {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+
+}
+
+.info-active{
+    display: flex;
+}
