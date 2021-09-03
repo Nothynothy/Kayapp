@@ -5,5 +5,12 @@
   "background_color": "#f4f4f4",
   "display": "fullscreen",
   "scope": "/",
-  "start_url": "/"
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/icon_512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
 }
