@@ -1,0 +1,9 @@
+{
+  "name": "Kayapp",
+  "short_name": "Kayapp",
+  "theme_color": "#264f9c",
+  "background_color": "#f4f4f4",
+  "display": "fullscreen",
+  "scope": "/",
+  "start_url": "/"
+}
