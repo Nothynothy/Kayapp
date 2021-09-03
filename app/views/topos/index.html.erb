@@ -72,12 +72,12 @@
     <% elsif params[:query] == nil %>
       <h4 class='around'>
         <%= @topos.count <= 1 ? 'Topo à proximité' : 'Topos à proximité' %> (<%= @topos.count %>)
-        <button class="info-btn"> i </button>
+        <a class="info-btn"> i </a>
       </h4>
     <% else %>
       <h4 class='around'>
         <%= @topos.count <= 1 ? 'Topo' : 'Topos' %> (<%= @topos.count %>)
-        <button class="info-btn"> i </button>
+        <a class="info-btn"> i </a>
       </h4>
     <% end %>
 
