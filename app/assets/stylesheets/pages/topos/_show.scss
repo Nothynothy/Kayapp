@@ -76,7 +76,6 @@
 
 .btn-alert {
   background-color: $orange;
-  color: white;
   padding: 5px 8px;
   border-radius: 5px;
   display: inline-block;
@@ -84,6 +83,9 @@
   text-align: center;
   width: 100%;
   margin-top: 10px;
+  &:hover {
+    text-decoration: none;
+  }
   // margin-left: 194px;
 }
 
